@@ -1,11 +1,40 @@
 import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import { useState } from "react";
+import Swal from "sweetalert2";
 const SignIn = () => {
+  const [err, setErr] = useState("");
+  const { loginUser, updateUserProfile } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  console.log("location in the login page", location);
+
   const { register, handleSubmit, reset } = useForm();
+
   const onSubmit = (data) => {
-    reset();
-    console.log(data);
+    const { email, password } = data;
+
+    loginUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+        updateUserProfile();
+        reset();
+        // Navigate after login
+        navigate(location?.state ? location.state : "/");
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Welcome Back!",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+      })
+      .catch((error) => {
+        setErr("Email or Password invalid please try again");
+        console.error(error);
+      });
   };
   return (
     <div className="relative min-h-80 bg-[#244034]">
@@ -52,6 +81,7 @@ const SignIn = () => {
           >
             Login
           </button>
+          {err && <p className="text-red-500">{err}</p>}
         </Form>
       </div>
     </div>

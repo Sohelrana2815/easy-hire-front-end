@@ -1,12 +1,33 @@
 import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
+  const { createNewUser, updateUserProfile } = useAuth();
   const { register, handleSubmit, reset } = useForm();
+  // onsubmit function
   const onSubmit = (data) => {
-    reset();
-    console.log(data);
+    const { name, photoURL, email, password } = data;
+    // Register
+    createNewUser(email, password).then((result) => {
+      console.log(result.user);
+      // Update profile
+      updateUserProfile(name, photoURL).then(() => {
+        console.log("Update successfully");
+        if ((name, photoURL)) {
+          reset();
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Sign up successfully",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        }
+      });
+    });
   };
   return (
     <div className="relative min-h-80 bg-[#244034]">
