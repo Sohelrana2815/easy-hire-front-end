@@ -37,7 +37,7 @@ const ResponsiveNavbar = () => {
         <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to="/addJob">Add Job</NavLink>
+        <NavLink to="/addJobs">Add Job</NavLink>
       </li>
       <li>
         <NavLink to="/myPostedJobs">My Posted Jobs</NavLink>
