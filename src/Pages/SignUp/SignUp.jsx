@@ -16,10 +16,8 @@ const SignUp = () => {
     createNewUser(email, password).then((result) => {
       console.log(result.user);
       // Update profile
+      navigate(location?.state ? location.state : "/");
       updateUserProfile(name, photoURL).then(() => {
-        reset();
-        // Navigate after login
-        navigate(location?.state ? location.state : "/");
         console.log("Update successfully");
         if ((name, photoURL)) {
           reset();

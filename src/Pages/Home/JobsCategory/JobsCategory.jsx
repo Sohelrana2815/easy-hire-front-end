@@ -17,7 +17,6 @@ const JobsCategory = () => {
 
   return (
     <div className="max-w-screen-2xl mx-auto">
-      <h2 className="text-center">{jobs.length}</h2>
       <Tabs>
         <TabList>
           <Tab>Web Development</Tab>
@@ -28,23 +27,26 @@ const JobsCategory = () => {
           <div className="grid gap-4 mt-6">
             {webDevJobs.map((webDevJob) => (
               <div key={webDevJob._id} className="border min-h-28 p-6">
-                <div className="flex items-center justify-between">
-                  {/* title and description */}
-                  <div>
+                <div className="flex flex-col md:flex-row items-stretch justify-between gap-4">
+                  {/* Title and description */}
+                  <div className="flex-1">
                     <h2 className="font-bold md:text-xl">
                       {webDevJob.jobTitle}
                     </h2>
                     <p className="md:text-base">{webDevJob.description}</p>
                   </div>
-                  {/* Deadline and price range btn*/}
-                  <div className="flex gap-x-4">
-                    <h4>Deadline: {webDevJob.deadline}</h4>
+                  {/* Deadline and price range */}
+                  <div className="flex flex-col items-start md:items-end gap-2">
+                    <h4 className="text-sm md:text-base">
+                      Deadline: {webDevJob.deadline}
+                    </h4>
                     <p className="font-medium">
                       <span className="text-green-700">Price range: </span>$
                       {webDevJob.minimumPrice}-{webDevJob.maximumPrice}
                     </p>
                   </div>
-                  <div>
+                  {/* Bid now button */}
+                  <div className="flex items-center">
                     <Link to={`/jobDetails/${webDevJob._id}`}>
                       <button className="btn bg-[#31795A] rounded-full btn-sm text-white">
                         <FcServices /> Bid now
@@ -63,9 +65,9 @@ const JobsCategory = () => {
                 key={digitalMarketingJob._id}
                 className="border min-h-28 p-6"
               >
-                <div className="flex items-center justify-between">
-                  {/* title and description */}
-                  <div>
+                <div className="flex flex-col md:flex-row items-stretch justify-between gap-4">
+                  {/* Title and description */}
+                  <div className="flex-1">
                     <h2 className="font-bold md:text-xl">
                       {digitalMarketingJob.jobTitle}
                     </h2>
@@ -73,16 +75,19 @@ const JobsCategory = () => {
                       {digitalMarketingJob.description}
                     </p>
                   </div>
-                  {/* Deadline and price range btn*/}
-                  <div className="flex gap-x-4">
-                    <h4>Deadline: {digitalMarketingJob.deadline}</h4>
+                  {/* Deadline and price range */}
+                  <div className="flex flex-col items-start md:items-end gap-2">
+                    <h4 className="text-sm md:text-base">
+                      Deadline: {digitalMarketingJob.deadline}
+                    </h4>
                     <p className="font-medium">
                       <span className="text-green-700">Price range: </span>$
                       {digitalMarketingJob.minimumPrice}-
                       {digitalMarketingJob.maximumPrice}
                     </p>
                   </div>
-                  <div>
+                  {/* Bid now button */}
+                  <div className="flex items-center">
                     <Link to={`/jobDetails/${digitalMarketingJob._id}`}>
                       <button className="btn bg-[#31795A] rounded-full btn-sm text-white">
                         <FcServices /> Bid now
@@ -98,9 +103,9 @@ const JobsCategory = () => {
           <div className="grid gap-4 mt-6">
             {graphicsDesignJobs.map((graphicsDesignJob) => (
               <div key={graphicsDesignJob._id} className="border min-h-28 p-6">
-                <div className="flex items-center justify-between">
-                  {/* title and description */}
-                  <div>
+                <div className="flex flex-col md:flex-row items-stretch justify-between gap-4">
+                  {/* Title and description */}
+                  <div className="flex-1">
                     <h2 className="font-bold md:text-xl">
                       {graphicsDesignJob.jobTitle}
                     </h2>
@@ -108,16 +113,19 @@ const JobsCategory = () => {
                       {graphicsDesignJob.description}
                     </p>
                   </div>
-                  {/* Deadline and price range btn*/}
-                  <div className="flex gap-x-4">
-                    <h4>Deadline: {graphicsDesignJob.deadline}</h4>
+                  {/* Deadline and price range */}
+                  <div className="flex flex-col items-start md:items-end gap-2">
+                    <h4 className="text-sm md:text-base">
+                      Deadline: {graphicsDesignJob.deadline}
+                    </h4>
                     <p className="font-medium">
                       <span className="text-green-700">Price range: </span>$
                       {graphicsDesignJob.minimumPrice}-
                       {graphicsDesignJob.maximumPrice}
                     </p>
                   </div>
-                  <div>
+                  {/* Bid now button */}
+                  <div className="flex items-center">
                     <Link to={`/jobDetails/${graphicsDesignJob._id}`}>
                       <button className="btn bg-[#31795A] rounded-full btn-sm text-white">
                         <FcServices /> Bid now

@@ -1,14 +1,19 @@
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import useAuth from "../../Hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const AddJobs = () => {
+  const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
+  const { user } = useAuth();
 
   const { register, handleSubmit, reset } = useForm();
   // onsubmit function
   const onSubmit = async (data) => {
     const job = {
+      email: user?.email,
       jobTitle: data.jobTitle,
       deadline: data.deadline,
       description: data.description,
@@ -26,7 +31,9 @@ const AddJobs = () => {
         title: "Added",
         text: "Your Job has been added successfully.",
         icon: "success",
+        timer: 2000,
       });
+      navigate("/myPostedJobs");
     }
   };
   return (
