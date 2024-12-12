@@ -1,9 +1,9 @@
-import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { useState } from "react";
 import Swal from "sweetalert2";
+
 const SignIn = () => {
   const [err, setErr] = useState("");
   const { loginUser, updateUserProfile } = useAuth();
@@ -44,45 +44,52 @@ const SignIn = () => {
 
       <div className="bg-[#EFF6F3] min-h-[62vh] flex items-center justify-center">
         {/* Login Form */}
-        <Form
-          onSubmit={handleSubmit(onSubmit)}
-          className="bg-gray-50 w-1/4 md:w-1/2 lg:w-1/4  p-10 rounded-none"
-        >
-          <p className="text-center">
-            Still don&apos;t have an account?{" "}
-            <Link className="text-success" to="/signUp">
-              Sign up
-            </Link>
-          </p>
-          {/* Email */}
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="email"
-              {...register("email")}
-              placeholder="Enter email"
-            />
-            <Form.Text className="text-muted">
-              We&apos;ll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
-          {/* Password */}
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Enter Password</Form.Label>
-            <Form.Control
-              type="password"
-              {...register("password")}
-              placeholder="Enter Password"
-            />
-          </Form.Group>
-          <button
-            type="submit"
-            className="w-full p-2  rounded text-white uppercase bg-[#31795A] hover:bg-[#275d48] transition-colors"
-          >
-            Login
-          </button>
-          {err && <p className="text-red-500">{err}</p>}
-        </Form>
+        <div className="hero bg-base-200 min-h-screen">
+          <div className="hero-content flex-col lg:flex-row-reverse">
+            <div className="text-center lg:text-left">
+              <h1 className="text-5xl font-bold">Login now!</h1>
+              <p className="py-6">
+                Provident cupiditate voluptatem et in. Quaerat fugiat ut
+                assumenda excepturi exercitationem quasi. In deleniti eaque aut
+                repudiandae et a id nisi.
+              </p>
+            </div>
+            <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+              <form className="card-body">
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Email</span>
+                  </label>
+                  <input
+                    type="email"
+                    placeholder="email"
+                    className="input input-bordered"
+                    required
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Password</span>
+                  </label>
+                  <input
+                    type="password"
+                    placeholder="password"
+                    className="input input-bordered"
+                    required
+                  />
+                  <label className="label">
+                    <a href="#" className="label-text-alt link link-hover">
+                      Forgot password?
+                    </a>
+                  </label>
+                </div>
+                <div className="form-control mt-6">
+                  <button className="btn btn-primary">Login</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

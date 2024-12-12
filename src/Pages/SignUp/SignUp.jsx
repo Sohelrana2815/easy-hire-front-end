@@ -1,8 +1,7 @@
-import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
 const SignUp = () => {
   const { createNewUser, updateUserProfile } = useAuth();
@@ -38,64 +37,74 @@ const SignUp = () => {
 
       <div className="bg-[#EFF6F3] min-h-[62vh] flex items-center justify-center">
         {/* Login Form */}
-
-        <Form
-          onSubmit={handleSubmit(onSubmit)}
-          className="bg-gray-50 w-1/4 md:w-1/2 lg:w-1/3  p-10 rounded-none"
-        >
-          <h2 className="text-center">Create Account</h2>
-          {/* Name */}
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              type="text"
-              {...register("name")}
-              placeholder="Full Name"
-            />
-          </Form.Group>
-          {/* Email */}
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="email"
-              {...register("email")}
-              placeholder="Enter email"
-            />
-            <Form.Text className="text-muted">
-              We&apos;ll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
-          {/* Password */}
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Enter Password</Form.Label>
-            <Form.Control
-              type="password"
-              {...register("password")}
-              placeholder="Enter Password"
-            />
-          </Form.Group>
-          {/* PhotoURL */}
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Photo URL</Form.Label>
-            <Form.Control
-              type="text"
-              {...register("photoURL")}
-              placeholder="Photo URL"
-            />
-          </Form.Group>
-          <button
-            type="submit"
-            className="w-full p-2  rounded text-white uppercase bg-[#31795A] hover:bg-[#275d48] transition-colors"
+        <div className="w-1/2 ">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="card-body bg-base-100  rounded-2xl p-10"
           >
-            Sign up
-          </button>
-          <p className="text-center mt-3">
-            Have an account?{" "}
-            <Link className="text-green-700" to="/signIn">
-              Sign in
-            </Link>
-          </p>
-        </Form>
+            {/* Name */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                type="text"
+                {...register("name")}
+                placeholder="John"
+                className="input input-bordered rounded-md bg-[#31795A17]"
+                required
+              />
+            </div>
+            {/* Email */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Email</span>
+              </label>
+              <input
+                type="email"
+                {...register("email")}
+                placeholder="example@gmail.com"
+                className="input input-bordered rounded-md bg-[#31795A17]"
+                required
+              />
+            </div>
+            {/* Password */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Password</span>
+              </label>
+              <input
+                type="password"
+                {...register("password")}
+                placeholder="Enter Password"
+                className="input input-bordered rounded-md bg-[#31795A17]"
+                required
+              />
+            </div>
+            {/* Photo URL */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Photo URL</span>
+              </label>
+              <input
+                type="text"
+                {...register("photoURL")}
+                placeholder="Enter Photo URL"
+                className="input input-bordered rounded-md bg-[#31795A17]"
+                required
+              />
+            </div>
+            <div className="form-control mt-6">
+              <button
+                type="submit"
+                className="btn bg-[#31795A] text-white rounded-md uppercase text-base"
+              >
+                Sign up
+              </button>
+            </div>
+            <SocialLogin />
+          </form>
+        </div>
       </div>
     </div>
   );

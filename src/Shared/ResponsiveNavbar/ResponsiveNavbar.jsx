@@ -1,11 +1,7 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
-
+import logo from "../../assets/WebsiteLogo/Logo-design-illustration-on-transparent-background-PNG.png";
 const ResponsiveNavbar = () => {
   const { user, logout, loading } = useAuth();
   const handleLogout = () => {
@@ -34,53 +30,99 @@ const ResponsiveNavbar = () => {
       </div>
     );
   }
+
+  const navLinks = (
+    <>
+      <li>
+        <NavLink to="/">Home</NavLink>
+      </li>
+      <li>
+        <NavLink to="/addJob">Add Job</NavLink>
+      </li>
+      <li>
+        <NavLink to="/myPostedJobs">My Posted Jobs</NavLink>
+      </li>
+      <li>
+        <NavLink to="/myBids">My Bids</NavLink>
+      </li>
+      <li>
+        <NavLink to="/bidRequest">Bid Request</NavLink>
+      </li>
+    </>
+  );
   return (
     <>
-      <Navbar expand="lg" className="bg-body-tertiary">
-        <Container>
-          <Navbar.Brand as={NavLink} to="/">
-            React-Bootstrap
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link as={NavLink} to="/">
-                Home
-              </Nav.Link>
-              {user ? (
-                ""
-              ) : (
-                <>
-                  <Nav.Link as={NavLink} to="/signIn">
-                    Sign in
-                  </Nav.Link>
-                  <Nav.Link as={NavLink} to="/signUp">
-                    Sign up
-                  </Nav.Link>
-                </>
-              )}
-            </Nav>
-            {user ? (
-              <>
-                <div className="lg:flex items-center gap-x-4">
-                  <div>
-                    <button onClick={handleLogout} className="btn btn-primary">
-                      Logout
-                    </button>
-                  </div>
-                  <div className="avatar py-3 lg:py-0">
-                    <div className="ring-primary ring-offset-base-100 w-10 rounded-full ring ring-offset-2">
-                      <img src={user?.photoURL} />
-                    </div>
-                  </div>
-                </div>
-              </>
-            ) : (
-              ""
-            )}
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+      <div className="navbar bg-base-100">
+        <div className="navbar-start">
+          <div className="dropdown">
+            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            >
+              {navLinks}
+            </ul>
+          </div>
+          <Link to="/">
+            <p className="text-xl cursor-pointer flex items-center gap-x-2">
+              <img src={logo} className="w-10" alt="" /> Easy Hire
+            </p>
+          </Link>
+        </div>
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu menu-horizontal px-1">{navLinks}</ul>
+        </div>
+        <div className="navbar-end gap-x-3">
+          {user ? (
+            <div className="avatar">
+              <div
+                className="ring-primary ring-offset-base-100 w-10
+           rounded-full ring ring-offset-2"
+              >
+                {user?.photoURL ? (
+                  <>
+                    <img src={user ? user?.photoURL : ""} />
+                  </>
+                ) : (
+                  <p>{user?.displayName}</p>
+                )}
+              </div>
+            </div>
+          ) : null}
+          {user ? (
+            <button
+              onClick={handleLogout}
+              className="btn rounded-md btn-primary"
+            >
+              Logout
+            </button>
+          ) : (
+            <>
+              <Link to="/signUp">
+                <button className="btn btn-outline rounded-md">Sign Up</button>
+              </Link>
+              <Link to="/signIn">
+                <button className="btn btn-success rounded-md">Sign in</button>
+              </Link>
+            </>
+          )}
+        </div>
+      </div>
     </>
   );
 };
