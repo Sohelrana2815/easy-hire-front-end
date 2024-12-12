@@ -40,7 +40,7 @@ const SignIn = () => {
   return (
     <div className="relative min-h-80 bg-[#244034]">
       <div className="flex flex-col justify-center items-center min-h-80 text-white">
-        <h2>Hi, Welcome Back!</h2>
+        <h2 className="font-EbGaramond text-3xl">Hi, Welcome Back!</h2>
       </div>
 
       <div className="bg-[#EFF6F3] min-h-[62vh] flex items-center justify-center">

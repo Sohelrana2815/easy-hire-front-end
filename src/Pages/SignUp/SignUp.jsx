@@ -35,8 +35,10 @@ const SignUp = () => {
   return (
     <div className="relative min-h-80 bg-[#244034]">
       <div className="flex flex-col justify-center items-center min-h-80 text-white">
-        <h2>Register</h2>
-        <p>Create an account & Start posting or hiring talents</p>
+        <h2 className="text-sm md:text-5xl font-EbGaramond">Register</h2>
+        <p className="mt-4 text-lg">
+          Create an account & Start posting or hiring talents
+        </p>
       </div>
 
       <div className="bg-[#EFF6F3] min-h-[62vh] flex items-center justify-center">
@@ -47,7 +49,7 @@ const SignUp = () => {
             className="card-body bg-base-100  rounded-2xl p-10"
           >
             <div>
-              <h2 className="text-center xl:text-4xl font-bold">
+              <h2 className="text-center md:text-2xl text-xl xl:text-4xl font-medium font-EbGaramond">
                 Create Account
               </h2>
               <h2 className="text-center">
