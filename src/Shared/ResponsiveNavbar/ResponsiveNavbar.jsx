@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import logo from "../../assets/WebsiteLogo/Logo-design-illustration-on-transparent-background-PNG.png";
+import { BiMenu } from "react-icons/bi";
 const ResponsiveNavbar = () => {
   const { user, logout, loading } = useAuth();
   const handleLogout = () => {
@@ -52,24 +53,15 @@ const ResponsiveNavbar = () => {
   );
   return (
     <>
-      <div className="navbar bg-base-100">
+      <div className="navbar bg-base-100 max-w-screen-2xl mx-auto my-10">
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn bg-[#D2F34C] lg:hidden"
+            >
+              <BiMenu className="text-sm md:text-2xl" />
             </div>
             <ul
               tabIndex={0}
@@ -91,7 +83,7 @@ const ResponsiveNavbar = () => {
           {user ? (
             <div className="avatar">
               <div
-                className="ring-primary ring-offset-base-100 w-10
+                className="ring-[#31795A] ring-offset-base-100 w-8
            rounded-full ring ring-offset-2"
               >
                 {user?.photoURL ? (
@@ -107,7 +99,7 @@ const ResponsiveNavbar = () => {
           {user ? (
             <button
               onClick={handleLogout}
-              className="btn rounded-md btn-primary"
+              className="btn rounded-md bg-[#D2F34C] btn-sm"
             >
               Logout
             </button>
