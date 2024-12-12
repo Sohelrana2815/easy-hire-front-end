@@ -2,9 +2,11 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const { createNewUser, updateUserProfile } = useAuth();
   const { register, handleSubmit, reset } = useForm();
   // onsubmit function
@@ -15,6 +17,9 @@ const SignUp = () => {
       console.log(result.user);
       // Update profile
       updateUserProfile(name, photoURL).then(() => {
+        reset();
+        // Navigate after login
+        navigate(location?.state ? location.state : "/");
         console.log("Update successfully");
         if ((name, photoURL)) {
           reset();

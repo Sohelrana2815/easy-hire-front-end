@@ -2,6 +2,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import useJobs from "../../../Hooks/useJobs";
 import { FcServices } from "react-icons/fc";
+import { Link } from "react-router-dom";
 const JobsCategory = () => {
   const { jobs } = useJobs();
 
@@ -44,9 +45,11 @@ const JobsCategory = () => {
                     </p>
                   </div>
                   <div>
-                    <button className="btn bg-[#31795A] rounded-full btn-sm text-white">
-                      <FcServices /> Bid now
-                    </button>
+                    <Link to={`/jobDetails/${webDevJob._id}`}>
+                      <button className="btn bg-[#31795A] rounded-full btn-sm text-white">
+                        <FcServices /> Bid now
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -80,9 +83,11 @@ const JobsCategory = () => {
                     </p>
                   </div>
                   <div>
-                    <button className="btn bg-[#31795A] rounded-full btn-sm text-white">
-                      <FcServices /> Bid now
-                    </button>
+                    <Link to={`/jobDetails/${digitalMarketingJob._id}`}>
+                      <button className="btn bg-[#31795A] rounded-full btn-sm text-white">
+                        <FcServices /> Bid now
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -113,9 +118,11 @@ const JobsCategory = () => {
                     </p>
                   </div>
                   <div>
-                    <button className="btn bg-[#31795A] rounded-full btn-sm text-white">
-                      <FcServices /> Bid now
-                    </button>
+                    <Link to={`/jobDetails/${graphicsDesignJob._id}`}>
+                      <button className="btn bg-[#31795A] rounded-full btn-sm text-white">
+                        <FcServices /> Bid now
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>
