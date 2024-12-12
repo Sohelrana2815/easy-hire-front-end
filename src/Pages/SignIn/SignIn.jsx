@@ -1,8 +1,9 @@
 import { useForm } from "react-hook-form";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 
 const SignIn = () => {
   const [err, setErr] = useState("");
@@ -44,51 +45,53 @@ const SignIn = () => {
 
       <div className="bg-[#EFF6F3] min-h-[62vh] flex items-center justify-center">
         {/* Login Form */}
-        <div className="hero bg-base-200 min-h-screen">
-          <div className="hero-content flex-col lg:flex-row-reverse">
-            <div className="text-center lg:text-left">
-              <h1 className="text-5xl font-bold">Login now!</h1>
-              <p className="py-6">
-                Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                assumenda excepturi exercitationem quasi. In deleniti eaque aut
-                repudiandae et a id nisi.
-              </p>
+        <div className="lg:w-1/4 mt-10">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="card-body bg-base-100 rounded-2xl"
+          >
+            <div>
+              <h2 className="text-center">
+                Still don&apos;t have an account?{" "}
+                <Link to="/signUp" className="underline text-green-700">
+                  Sign up
+                </Link>
+              </h2>
             </div>
-            <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-              <form className="card-body">
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Email</span>
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="email"
-                    className="input input-bordered"
-                    required
-                  />
-                </div>
-                <div className="form-control">
-                  <label className="label">
-                    <span className="label-text">Password</span>
-                  </label>
-                  <input
-                    type="password"
-                    placeholder="password"
-                    className="input input-bordered"
-                    required
-                  />
-                  <label className="label">
-                    <a href="#" className="label-text-alt link link-hover">
-                      Forgot password?
-                    </a>
-                  </label>
-                </div>
-                <div className="form-control mt-6">
-                  <button className="btn btn-primary">Login</button>
-                </div>
-              </form>
+            {/* Email */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Email</span>
+              </label>
+              <input
+                type="email"
+                {...register("email")}
+                placeholder="example@gmail.com"
+                className="input input-bordered rounded-md bg-[#31795A17]"
+                required
+              />
             </div>
-          </div>
+            {/* Password */}
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Password</span>
+              </label>
+              <input
+                type="password"
+                {...register("password")}
+                placeholder="Enter password"
+                className="input input-bordered rounded-md bg-[#31795A17]"
+                required
+              />
+              {err && <p className="text-red-500">{err}</p>}
+            </div>
+            <div className="form-control mt-6 ">
+              <button className="btn bg-[#31795A] rounded-md text-white text-base">
+                Login
+              </button>
+            </div>
+            <SocialLogin />
+          </form>
         </div>
       </div>
     </div>

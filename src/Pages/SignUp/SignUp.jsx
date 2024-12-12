@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const { createNewUser, updateUserProfile } = useAuth();
@@ -36,12 +37,23 @@ const SignUp = () => {
       </div>
 
       <div className="bg-[#EFF6F3] min-h-[62vh] flex items-center justify-center">
-        {/* Login Form */}
-        <div className="w-1/2 ">
+        {/* Login Fo rm */}
+        <div className="w-1/2 mt-10">
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="card-body bg-base-100  rounded-2xl p-10"
           >
+            <div>
+              <h2 className="text-center xl:text-4xl font-bold">
+                Create Account
+              </h2>
+              <h2 className="text-center">
+                Have an account?{" "}
+                <Link to="/signIn" className="underline text-green-700">
+                  Sign In
+                </Link>
+              </h2>
+            </div>
             {/* Name */}
             <div className="form-control">
               <label className="label">
