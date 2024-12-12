@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "image": "https://i.ibb.co.com/bQvQbST/service3.jpg",
+    "title": "Responsive Web Design"
+  },
+  {
+    "id": 2,
+    "image": "https://i.ibb.co.com/myvDMBx/service2.jpg",
+    "title": "Modern UI/UX Concepts"
+  },
+  {
+    "id": 3,
+    "image": "https://i.ibb.co.com/7XGVXHH/service4.webp",
+    "title": "Creative Graphic Design"
+  },
+  {
+    "id": 4,
+    "image": "https://i.ibb.co.com/QNt4FWZ/service1.png",
+    "title": "Digital Marketing Strategies"
+  }
+]

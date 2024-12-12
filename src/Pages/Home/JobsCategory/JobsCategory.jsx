@@ -16,13 +16,14 @@ const JobsCategory = () => {
   );
 
   return (
-    <div className="max-w-screen-2xl mx-auto">
+    <div className="max-w-screen-2xl mx-auto mt-20">
       <Tabs>
         <TabList>
           <Tab>Web Development</Tab>
           <Tab>Digital Marketing</Tab>
           <Tab>Graphics Design</Tab>
         </TabList>
+        {/* Tab for web dev */}
         <TabPanel>
           <div className="grid gap-4 mt-6">
             {webDevJobs.map((webDevJob) => (
@@ -48,7 +49,7 @@ const JobsCategory = () => {
                   {/* Bid now button */}
                   <div className="flex items-center">
                     <Link to={`/jobDetails/${webDevJob._id}`}>
-                      <button className="btn bg-[#31795A] rounded-full btn-sm text-white">
+                      <button className="btn bg-[#31795A] rounded-full btn-sm md:btn-md text-white">
                         <FcServices /> Bid now
                       </button>
                     </Link>
@@ -58,6 +59,7 @@ const JobsCategory = () => {
             ))}
           </div>
         </TabPanel>
+        {/* Tab for digital marketing */}
         <TabPanel>
           <div className="grid gap-4 mt-6">
             {digitalMarketingJobs.map((digitalMarketingJob) => (
@@ -99,6 +101,7 @@ const JobsCategory = () => {
             ))}
           </div>
         </TabPanel>
+        {/* Tab for graphics design */}
         <TabPanel>
           <div className="grid gap-4 mt-6">
             {graphicsDesignJobs.map((graphicsDesignJob) => (

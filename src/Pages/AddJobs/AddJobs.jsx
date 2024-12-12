@@ -22,7 +22,7 @@ const AddJobs = () => {
       category: data.category,
     };
 
-    const jobResponse = await axiosPublic.post("/jobs", job);
+    const jobResponse = await axiosPublic.post("/myPostedJobs", job);
     console.log(data);
 
     if (jobResponse.data.insertedId) {

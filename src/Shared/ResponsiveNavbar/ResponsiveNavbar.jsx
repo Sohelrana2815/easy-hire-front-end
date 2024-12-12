@@ -59,9 +59,9 @@ const ResponsiveNavbar = () => {
             <div
               tabIndex={0}
               role="button"
-              className="btn bg-[#D2F34C] lg:hidden"
+              className="btn btn-sm md:btn-md bg-[#D2F34C] lg:hidden"
             >
-              <BiMenu className="text-sm md:text-2xl" />
+              <BiMenu className="text-xl md:text-2xl" />
             </div>
             <ul
               tabIndex={0}
@@ -71,7 +71,7 @@ const ResponsiveNavbar = () => {
             </ul>
           </div>
           <Link to="/">
-            <p className="text-xl cursor-pointer flex items-center gap-x-2">
+            <p className="text-xl cursor-pointer flex items-center md:gap-x-2">
               <img src={logo} className="w-10" alt="" /> Easy Hire
             </p>
           </Link>
@@ -99,7 +99,7 @@ const ResponsiveNavbar = () => {
           {user ? (
             <button
               onClick={handleLogout}
-              className="btn rounded-md bg-[#D2F34C] btn-sm"
+              className="btn rounded-none text-sm md:text-base font-serif bg-[#D2F34C] btn-sm md:btn-md "
             >
               Logout
             </button>
