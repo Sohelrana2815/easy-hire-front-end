@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const AddJobs = () => {
   const navigate = useNavigate();
@@ -22,40 +22,60 @@ const AddJobs = () => {
       category: data.category,
     };
 
-    const jobResponse = await axiosPublic.post("/myPostedJobs", job);
-    console.log(data);
-
-    if (jobResponse.data.insertedId) {
-      reset();
-      Swal.fire({
-        title: "Added",
-        text: "Your Job has been added successfully.",
-        icon: "success",
-        timer: 2000,
-      });
-      navigate("/myPostedJobs");
+    try {
+      const jobResponse = await axiosPublic.post("/usersPostedJobs", job);
+      toast.success("Job added successfully!");
+      console.log(jobResponse.data);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      navigate("/myPostedJobs"); // Redirect to My Posted Jobs page
+      reset(); // Clear form fields
+    } catch (error) {
+      toast.error("Failed to add job. Please try again.");
+      console.error(error);
     }
   };
+
   return (
     <>
-      <div className="relative min-h-80 bg-[#244034]">
-        <div className="flex flex-col justify-center items-center min-h-80 text-white">
-          <h2>Register</h2>
-          <p>Create an account & Start posting or hiring talents</p>
+      <Toaster />
+      <div className="relative">
+        <div className="absolute h-36 bg-[#244034] flex justify-center items-center w-full">
+          <h1 className="text-white text-xl md:text-2xl lg:text-4xl font-EbGaramond font-medium">
+            Provide the details of the job you&apos;re hiring for
+          </h1>
         </div>
+      </div>
+      {/* Login Fo rm */}
+      <div className="flex justify-center items-center min-h-screen bg-[#EFF6F3]">
+        <div className="xl:w-1/2 md:w-3/4 w-full px-4 md:px-0">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="card-body bg-white rounded-2xl p-10"
+          >
+            <div>
+              <h2 className="text-center xl:text-4xl font-bold font-EbGaramond">
+                Post Jobs
+              </h2>
+            </div>
 
-        <div className="bg-[#EFF6F3] min-h-[62vh] flex items-center justify-center">
-          {/* Login Fo rm */}
-          <div className="w-1/2 mt-10">
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="card-body bg-base-100  rounded-2xl p-10"
-            >
-              <div>
-                <h2 className="text-center xl:text-4xl font-bold">Post Jobs</h2>
+            {/* Grid layout */}
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-2">
+              {/* Employer Email - Read-Only */}
+              <div className="form-control mb-4">
+                <label className="label">
+                  <span className="label-text">Employer Email</span>
+                </label>
+                <input
+                  type="text"
+                  value={user?.email}
+                  className="input input-bordered rounded-md bg-[#31795A17]"
+                  readOnly
+                />
               </div>
-              {/* Job title */}
-              <div className="form-control">
+
+              {/* Job Title */}
+              <div className="form-control mb-4">
                 <label className="label">
                   <span className="label-text">Job title</span>
                 </label>
@@ -67,41 +87,29 @@ const AddJobs = () => {
                   required
                 />
               </div>
+
               {/* Deadline */}
-              <div className="form-control">
+              <div className="form-control mb-4">
                 <label className="label">
                   <span className="label-text">Deadline</span>
                 </label>
                 <input
-                  type="text"
+                  type="date"
                   {...register("deadline")}
-                  placeholder="Deadline"
                   className="input input-bordered rounded-md bg-[#31795A17]"
                   required
                 />
               </div>
-              {/* Description */}
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Description</span>
-                </label>
-                <input
-                  type="text"
-                  {...register("description")}
-                  placeholder="Short Description"
-                  className="input input-bordered rounded-md bg-[#31795A17]"
-                  required
-                />
-              </div>
+
               {/* Category */}
-              <div className="form-control">
+              <div className="form-control mb-4">
                 <label className="label">
                   <span className="label-text">Category</span>
                 </label>
                 <select
                   {...register("category")}
-                  required
                   className="select select-bordered bg-[#31795A17]"
+                  required
                 >
                   <option value="web-development">Web Development</option>
                   <option value="digital-marketing">Digital Marketing</option>
@@ -109,10 +117,10 @@ const AddJobs = () => {
                 </select>
               </div>
 
-              {/* Min price */}
-              <div className="form-control">
+              {/* Minimum Price */}
+              <div className="form-control mb-4">
                 <label className="label">
-                  <span className="label-text">Minium Price</span>
+                  <span className="label-text">Minimum Price</span>
                 </label>
                 <input
                   type="number"
@@ -122,8 +130,9 @@ const AddJobs = () => {
                   required
                 />
               </div>
-              {/* Max price */}
-              <div className="form-control">
+
+              {/* Maximum Price */}
+              <div className="form-control mb-4">
                 <label className="label">
                   <span className="label-text">Maximum Price</span>
                 </label>
@@ -135,16 +144,31 @@ const AddJobs = () => {
                   required
                 />
               </div>
-              <div className="form-control mt-6">
-                <button
-                  type="submit"
-                  className="btn bg-[#31795A] text-white rounded-md uppercase text-base"
-                >
-                  Add Job
-                </button>
-              </div>
-            </form>
-          </div>
+            </div>
+
+            {/* Description */}
+            <div className="form-control mb-4">
+              <label className="label">
+                <span className="label-text">Description</span>
+              </label>
+              <textarea
+                {...register("description")}
+                placeholder="Short Description"
+                className="textarea textarea-bordered rounded-md bg-[#31795A17] h-28"
+                required
+              />
+            </div>
+
+            {/* Submit Button */}
+            <div className="form-control mt-6">
+              <button
+                type="submit"
+                className="btn bg-[#31795A] text-white rounded-md uppercase text-base"
+              >
+                Add Job
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </>

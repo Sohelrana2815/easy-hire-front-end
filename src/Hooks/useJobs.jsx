@@ -5,9 +5,9 @@ const useJobs = () => {
   const axiosPublic = useAxiosPublic();
 
   const { data: jobs = [], refetch } = useQuery({
-    queryKey: ["job"], // Query key should match your endpoint
+    queryKey: ["allUsersJobs"], // Query key should match your endpoint
     queryFn: async () => {
-      const response = await axiosPublic.get("/jobs");
+      const response = await axiosPublic.get("/allUsersJobs");
       return response.data;
     },
   });

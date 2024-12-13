@@ -15,7 +15,7 @@ const Banner = () => {
             <p className="text-[#5EA17E] md:text-lg font-medium">
               #1 Online Marketplace
             </p>
-            <h2 className="text-2xl md:text-4xl lg:text-6xl font-bold font-EbGaramond text-[#31795A]">
+            <h2 className="text-2xl md:text-4xl lg:text-8xl font-bold font-EbGaramond text-[#31795A]">
               Find the talents for any job.
             </h2>
             <p className="text-gray-700 md:text-xl mt-2">

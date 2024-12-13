@@ -11,8 +11,12 @@ const ErrorPage = () => {
           className="w-80 md:w-[40rem] object-contain"
         />
         <div className="space-y-6">
-          <h1 className="text-7xl md:text-9xl font-bold">404</h1>
-          <h2 className="text-3xl md:text-5xl font-semibold">Page Not Found</h2>
+          <h1 className="text-7xl md:text-9xl font-bold font-EbGaramond">
+            404
+          </h1>
+          <h2 className="text-3xl md:text-5xl font-semibold font-EbGaramond">
+            Page Not Found
+          </h2>
           <p className="text-gray-600 max-w-xl text-lg md:text-xl">
             Can&apos;t find what you need? Try searching below or return to our
             homepage.
