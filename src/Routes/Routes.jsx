@@ -7,10 +7,12 @@ import AddJobs from "../Pages/AddJobs/AddJobs";
 import JobDetails from "../Pages/JobDetails/JobDetails";
 import PrivateRoute from "./PrivateRoute";
 import MyPostedJobs from "../Pages/MyPostedJobs/MyPostedJobs";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
