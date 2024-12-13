@@ -5,12 +5,21 @@ import Swal from "sweetalert2";
 import toast, { Toaster } from "react-hot-toast";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import useAuth from "../../Hooks/useAuth";
+import { TbFileDescription } from "react-icons/tb";
+import { BsCurrencyDollar } from "react-icons/bs";
+import { MdEmail } from "react-icons/md";
+import { BiCategory } from "react-icons/bi";
 const MyPostedJobs = () => {
+  const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
   const { data: myPostedJobs = [], refetch } = useQuery({
     queryKey: ["myPostedJob"],
     queryFn: async () => {
-      const response = await axiosPublic.get("/myPostedJobs");
+      const response = await axiosPublic.get(
+        `/myPostedJobs?email=${user?.email}`,
+        { withCredentials: true }
+      );
       return response.data;
     },
   });
@@ -41,8 +50,10 @@ const MyPostedJobs = () => {
       if (response.data.modifiedCount > 0) {
         Swal.fire({
           title: "Updated!",
-          text: "Your job has been updated.",
+          text: "Your job has been updated!.",
           icon: "success",
+          showConfirmButton: false,
+          timer: 1000,
         });
         refetch();
         closeModal();
@@ -104,14 +115,23 @@ const MyPostedJobs = () => {
               className="card bg-white rounded-md border shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out"
             >
               <div className="card-body p-6">
-                <h2 className="text-lg font-semibold">
+                <h2 className="text-2xl font-bold text-gray-900">
                   {myPostedJob.jobTitle}
                 </h2>
-                <p className="text-gray-700 mt-2">{myPostedJob.description}</p>
-                <p className="text-gray-600 mt-1">{myPostedJob.email}</p>
-                <p className="text-gray-600 mt-1">
-                  Price range: {myPostedJob.minimumPrice} -{" "}
-                  {myPostedJob.maximumPrice}
+                <p className="text-gray-700 mt-2 flex items-center gap-x-2">
+                  <TbFileDescription className="text-gray-600" />
+                  {myPostedJob.description}
+                </p>
+                <p className="text-gray-600 mt-1 flex items-center gap-x-2">
+                  <MdEmail className="text-gray-600" /> {myPostedJob.email}
+                </p>
+                <p className="uppercase flex items-center gap-x-2">
+                  <BiCategory className="text-gray-600" />
+                  {myPostedJob.category}
+                </p>
+                <p className="text-gray-600 mt-1 flex items-center gap-x-2">
+                  <BsCurrencyDollar className="text-gray-600" />
+                  {myPostedJob.minimumPrice} -{myPostedJob.maximumPrice}
                 </p>
                 <div className="card-actions justify-end mt-4 space-x-2">
                   <button

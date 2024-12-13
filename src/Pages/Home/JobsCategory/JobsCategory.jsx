@@ -75,34 +75,41 @@ const JobsCategory = () => {
             {digitalMarketingJobs.map((digitalMarketingJob) => (
               <div
                 key={digitalMarketingJob._id}
-                className="border min-h-28 p-6"
+                className="border rounded-md shadow-md p-4 bg-white hover:shadow-lg transition-shadow duration-300 ease-in-out"
               >
-                <div className="flex flex-col md:flex-row items-stretch justify-between gap-4">
-                  {/* Title and description */}
-                  <div className="flex-1">
-                    <h2 className="font-bold md:text-xl">
+                <div className="flex flex-col md:flex-row justify-between h-full">
+                  {/* Top Section: Title and Description */}
+                  <div>
+                    <h2 className="font-bold md:text-lg text-[#31795A]">
                       {digitalMarketingJob.jobTitle}
                     </h2>
-                    <p className="md:text-base">
-                      {digitalMarketingJob.description}
+                    <p className="text-sm text-gray-600 mt-1">
+                      {digitalMarketingJob.description.length > 100
+                        ? `${digitalMarketingJob.description.slice(0, 100)}...`
+                        : digitalMarketingJob.description}
                     </p>
                   </div>
-                  {/* Deadline and price range */}
-                  <div className="flex flex-col items-start md:items-end gap-2">
-                    <h4 className="text-sm md:text-base">
-                      Deadline: {digitalMarketingJob.deadline}
+
+                  {/* Middle Section: Deadline and Price Range */}
+                  <div className="flex flex-col items-start mt-4">
+                    <h4 className="text-xs md:text-sm text-gray-500">
+                      Deadline:{" "}
+                      {new Date(
+                        digitalMarketingJob.deadline
+                      ).toLocaleDateString()}
                     </h4>
-                    <p className="font-medium">
-                      <span className="text-green-700">Price range: </span>$
-                      {digitalMarketingJob.minimumPrice}-
+                    <p className="text-sm font-medium mt-1">
+                      <span className="text-green-700">Price range:</span> $
+                      {digitalMarketingJob.minimumPrice} - $
                       {digitalMarketingJob.maximumPrice}
                     </p>
                   </div>
-                  {/* Bid now button */}
-                  <div className="flex items-center">
+
+                  {/* Right Section: Bid Now Button */}
+                  <div className="flex justify-end mt-4">
                     <Link to={`/jobDetails/${digitalMarketingJob._id}`}>
-                      <button className="btn bg-[#31795A] rounded-full btn-sm text-white">
-                        <FcServices /> Bid now
+                      <button className="btn bg-[#31795A] rounded-full btn-sm text-base text-white flex items-center gap-2">
+                        <FcServices /> Bid Now
                       </button>
                     </Link>
                   </div>
@@ -115,33 +122,43 @@ const JobsCategory = () => {
         <TabPanel>
           <div className="grid gap-4 mt-6">
             {graphicsDesignJobs.map((graphicsDesignJob) => (
-              <div key={graphicsDesignJob._id} className="border min-h-28 p-6">
-                <div className="flex flex-col md:flex-row items-stretch justify-between gap-4">
-                  {/* Title and description */}
-                  <div className="flex-1">
-                    <h2 className="font-bold md:text-xl">
+              <div
+                key={graphicsDesignJob._id}
+                className="border rounded-md shadow-md p-4 bg-white hover:shadow-lg transition-shadow duration-300 ease-in-out"
+              >
+                <div className="flex flex-col md:flex-row justify-between h-full">
+                  {/* Top Section: Title and Description */}
+                  <div>
+                    <h2 className="font-bold md:text-lg text-[#31795A]">
                       {graphicsDesignJob.jobTitle}
                     </h2>
-                    <p className="md:text-base">
-                      {graphicsDesignJob.description}
+                    <p className="text-sm text-gray-600 mt-1">
+                      {graphicsDesignJob.description.length > 100
+                        ? `${graphicsDesignJob.description.slice(0, 100)}...`
+                        : graphicsDesignJob.description}
                     </p>
                   </div>
-                  {/* Deadline and price range */}
-                  <div className="flex flex-col items-start md:items-end gap-2">
-                    <h4 className="text-sm md:text-base">
-                      Deadline: {graphicsDesignJob.deadline}
+
+                  {/* Middle Section: Deadline and Price Range */}
+                  <div className="flex flex-col items-start mt-4">
+                    <h4 className="text-xs md:text-sm text-gray-500">
+                      Deadline:{" "}
+                      {new Date(
+                        graphicsDesignJob.deadline
+                      ).toLocaleDateString()}
                     </h4>
-                    <p className="font-medium">
-                      <span className="text-green-700">Price range: </span>$
-                      {graphicsDesignJob.minimumPrice}-
+                    <p className="text-sm font-medium mt-1">
+                      <span className="text-green-700">Price range:</span> $
+                      {graphicsDesignJob.minimumPrice} - $
                       {graphicsDesignJob.maximumPrice}
                     </p>
                   </div>
-                  {/* Bid now button */}
-                  <div className="flex items-center">
+
+                  {/* Right Section: Bid Now Button */}
+                  <div className="flex justify-end mt-4">
                     <Link to={`/jobDetails/${graphicsDesignJob._id}`}>
-                      <button className="btn bg-[#31795A] rounded-full btn-sm text-white">
-                        <FcServices /> Bid now
+                      <button className="btn bg-[#31795A] rounded-full btn-sm text-base text-white flex items-center gap-2">
+                        <FcServices /> Bid Now
                       </button>
                     </Link>
                   </div>

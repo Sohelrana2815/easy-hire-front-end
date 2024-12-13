@@ -11,11 +11,12 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../Firebase/firebase.config";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const axiosPublic = useAxiosPublic();
   const googleProvider = new GoogleAuthProvider();
   const gitHubProvider = new GithubAuthProvider();
 
@@ -61,12 +62,23 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log("User in the auth state changed", currentUser);
       setUser(currentUser);
+      if (currentUser) {
+        const email = { email: currentUser?.email };
+        axiosPublic
+          .post("/jwt", email, { withCredentials: true })
+          .then((response) => {
+            if (response.data.success) {
+              console.log(response.data);
+              setLoading(false);
+            }
+          });
+      }
       setLoading(false);
     });
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [axiosPublic]);
 
   const authInfo = {
     user,

@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const Banner = () => {
   return (
     <div className="max-w-screen-2xl mx-auto px-4">
-      <Carousel>
+      <Carousel showThumbs={false}>
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 ">
           {/* Left Content */}
           <div className="text-center md:text-start flex-1 space-y-4">
