@@ -10,15 +10,18 @@ import { TbFileDescription } from "react-icons/tb";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import { BiCategory } from "react-icons/bi";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 const MyPostedJobs = () => {
   const { user } = useAuth();
+  // Axios public and axios secure
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
+  // React Query to load data
   const { data: myPostedJobs = [], refetch } = useQuery({
-    queryKey: ["myPostedJob"],
+    queryKey: ["myPostedJob", user?.email],
     queryFn: async () => {
-      const response = await axiosPublic.get(
-        `/myPostedJobs?email=${user?.email}`,
-        { withCredentials: true }
+      const response = await axiosSecure.get(
+        `/myPostedJobs?email=${user?.email}`
       );
       return response.data;
     },
@@ -77,7 +80,9 @@ const MyPostedJobs = () => {
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const response = await axiosPublic.delete(`/myPostedJobs/${id}`);
+        const response = await axiosPublic.delete(`/myPostedJobs/${id}`, {
+          withCredentials: true,
+        });
 
         if (response.data.deletedCount > 0) {
           toast.success("Job deleted successfully!");
@@ -102,7 +107,6 @@ const MyPostedJobs = () => {
   return (
     <>
       <Toaster />
-
       <div className="min-h-screen p-4 bg-[#F0F5F3]">
         <h2 className="text-center font-medium text-xl md:text-2xl lg:text-4xl font-EbGaramond text-[#31795A] py-6">
           Your Posted Jobs

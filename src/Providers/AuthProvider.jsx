@@ -61,16 +61,21 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log("User in the auth state changed", currentUser);
+      const userEmail = currentUser?.email || user?.email;
+      const email = { email: userEmail };
       setUser(currentUser);
+      // get email from current user then issue a token
       if (currentUser) {
-        const email = { email: currentUser?.email };
         axiosPublic
           .post("/jwt", email, { withCredentials: true })
           .then((response) => {
-            if (response.data.success) {
-              console.log(response.data);
-              setLoading(false);
-            }
+            console.log("Token in client side: ", response.data);
+          });
+      } else {
+        axiosPublic
+          .post("/clearCookie", email, { withCredentials: true })
+          .then((response) => {
+            console.log(response.data);
           });
       }
       setLoading(false);
@@ -78,7 +83,7 @@ const AuthProvider = ({ children }) => {
     return () => {
       unsubscribe();
     };
-  }, [axiosPublic]);
+  }, [axiosPublic, user?.email]);
 
   const authInfo = {
     user,
