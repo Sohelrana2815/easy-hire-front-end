@@ -1,10 +1,7 @@
-import useAuth from "../../Hooks/useAuth";
 import useMyBidJobs from "../../Hooks/useMyBidJobs";
 
 const MyBids = () => {
-  const { user } = useAuth();
-
-  const { myBidJobs, refetch } = useMyBidJobs();
+  const { myBidJobs } = useMyBidJobs();
 
   return (
     <>
@@ -26,7 +23,6 @@ const MyBids = () => {
               </tr>
             </thead>
             <tbody>
-              row 1
               {myBidJobs.map((myBidJob, index) => (
                 <tr key={myBidJob._id} className="hover">
                   <th>{index + 1}</th>
