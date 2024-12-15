@@ -44,7 +44,7 @@ const ResponsiveNavbar = () => {
         <NavLink to="/myPostedJobs">My Posted Jobs</NavLink>
       </li>
       <li>
-        <NavLink to="/myBids">My Bids</NavLink>
+        <NavLink to="/myBidJobs">My Bids</NavLink>
       </li>
       <li>
         <NavLink to="/bidRequest">Bid Request</NavLink>
@@ -81,18 +81,15 @@ const ResponsiveNavbar = () => {
         </div>
         <div className="navbar-end gap-x-3">
           {user ? (
-            <div className="avatar">
+            <div className="avatar" title={user?.displayName}>
               <div
                 className="ring-[#31795A] ring-offset-base-100 w-8
-           rounded-full ring ring-offset-2"
+                              rounded-full ring ring-offset-2"
               >
-                {user?.photoURL ? (
-                  <>
-                    <img src={user ? user?.photoURL : ""} />
-                  </>
-                ) : (
-                  <p>{user?.displayName}</p>
-                )}
+                <img
+                  src={user.photoURL ? user.photoURL : null}
+                  alt={user?.displayName}
+                />
               </div>
             </div>
           ) : null}

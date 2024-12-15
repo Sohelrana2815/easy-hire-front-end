@@ -37,7 +37,6 @@ const AddJobs = () => {
 
   return (
     <>
-      <Toaster />
       <div className="relative">
         <div className="absolute h-36 bg-[#244034] flex justify-center items-center w-full">
           <h1 className="text-white text-xl md:text-2xl lg:text-4xl font-EbGaramond font-medium">
@@ -171,6 +170,7 @@ const AddJobs = () => {
           </form>
         </div>
       </div>
+      <Toaster />
     </>
   );
 };

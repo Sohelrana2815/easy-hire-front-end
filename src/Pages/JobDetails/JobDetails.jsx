@@ -1,9 +1,57 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import { useForm } from "react-hook-form";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const JobDetails = () => {
-  const jobs = useLoaderData();
-  const { jobTitle, deadline, description, minimumPrice, maximumPrice } = jobs;
-  //   name, Deadline,price Range,description
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+  const allUsersJobs = useLoaderData();
+  const navigate = useNavigate();
+  const {
+    jobTitle,
+    deadline,
+    description,
+    minimumPrice,
+    maximumPrice,
+    email: jobOwnerEmail,
+  } = allUsersJobs;
+
+  const isOwner = user?.email === jobOwnerEmail;
+
+  //
+
+  const { register, handleSubmit, reset } = useForm();
+
+  const onSubmit = async (data) => {
+    const myBidedJob = {
+      jobTitle: jobTitle,
+      email: user?.email,
+      deadline: data.deadline,
+      status: "pending",
+      jobOwnerEmail: jobOwnerEmail,
+      bidPrice: parseFloat(data.bidPrice),
+    };
+
+    try {
+      const bidResponse = await axiosSecure.post(`/bidedJobs`, myBidedJob);
+      if (bidResponse.data.insertedId) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Bid This Job Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/myBidJobs");
+        reset();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <div className="hero bg-[#EFF6F3] min-h-[50vh] mt-6">
@@ -22,7 +70,10 @@ const JobDetails = () => {
 
       <div className="lg:w-1/4 mx-auto mt-10">
         <h1 className="text-center">place your bid form section</h1>
-        <form className="card-body bg-base-100 rounded-2xl">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="card-body bg-base-100 rounded-2xl"
+        >
           <div></div>
           {/* Price */}
           <div className="form-control">
@@ -31,7 +82,8 @@ const JobDetails = () => {
             </label>
             <input
               type="number"
-              placeholder="Price(Bidding amount)"
+              {...register("bidPrice")}
+              placeholder="Price (Your Bidding amount)"
               className="input input-bordered rounded-md bg-[#31795A17]"
               required
             />
@@ -42,7 +94,8 @@ const JobDetails = () => {
               <span className="label-text">Deadline</span>
             </label>
             <input
-              type="text"
+              type="date"
+              {...register("deadline")}
               placeholder="Deadline"
               className="input input-bordered rounded-md bg-[#31795A17]"
               required
@@ -51,13 +104,13 @@ const JobDetails = () => {
           {/* Email */}
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Email</span>
+              <span className="label-text">Employer Email</span>
             </label>
             <input
               type="email"
-              placeholder="Email"
+              value={user?.email}
+              readOnly
               className="input input-bordered rounded-md bg-[#31795A17]"
-              required
             />
           </div>
           {/* Buyer email */}
@@ -67,15 +120,23 @@ const JobDetails = () => {
             </label>
             <input
               type="email"
-              placeholder="Buyer email"
+              value={jobOwnerEmail}
+              readOnly
               className="input input-bordered rounded-md bg-[#31795A17]"
-              required
             />
           </div>
           <div className="form-control mt-6 ">
-            <button className="btn bg-[#31795A] rounded-md text-white text-base">
+            <button
+              disabled={isOwner}
+              className="btn bg-[#31795A] rounded-md text-white text-base"
+            >
               Bid on the project
             </button>
+            {isOwner ? (
+              <p className="text-red-500 text-sm mt-2">
+                You cannot bid on your own project.
+              </p>
+            ) : null}
           </div>
         </form>
       </div>

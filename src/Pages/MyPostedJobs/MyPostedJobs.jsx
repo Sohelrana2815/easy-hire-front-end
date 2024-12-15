@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { FaPen, FaTrashCan } from "react-icons/fa6";
 import Swal from "sweetalert2";
 import toast, { Toaster } from "react-hot-toast";
@@ -14,7 +13,6 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 const MyPostedJobs = () => {
   const { user } = useAuth();
   // Axios public and axios secure
-  const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
   // React Query to load data
   const { data: myPostedJobs = [], refetch } = useQuery({
@@ -46,7 +44,8 @@ const MyPostedJobs = () => {
     };
 
     try {
-      const response = await axiosPublic.patch(
+      // Update My posted jobs
+      const response = await axiosSecure.patch(
         `/myPostedJobs/${id}`,
         myPostedJob
       );
@@ -80,9 +79,7 @@ const MyPostedJobs = () => {
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const response = await axiosPublic.delete(`/myPostedJobs/${id}`, {
-          withCredentials: true,
-        });
+        const response = await axiosSecure.delete(`/myPostedJobs/${id}`, {});
 
         if (response.data.deletedCount > 0) {
           toast.success("Job deleted successfully!");
@@ -106,7 +103,6 @@ const MyPostedJobs = () => {
 
   return (
     <>
-      <Toaster />
       <div className="min-h-screen p-4 bg-[#F0F5F3]">
         <h2 className="text-center font-medium text-xl md:text-2xl lg:text-4xl font-EbGaramond text-[#31795A] py-6">
           Your Posted Jobs
@@ -282,6 +278,7 @@ const MyPostedJobs = () => {
           </div>
         </div>
       </dialog>
+      <Toaster />
     </>
   );
 };

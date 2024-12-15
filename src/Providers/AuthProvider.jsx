@@ -64,6 +64,7 @@ const AuthProvider = ({ children }) => {
       const userEmail = currentUser?.email || user?.email;
       const email = { email: userEmail };
       setUser(currentUser);
+      setLoading(false);
       // get email from current user then issue a token
       if (currentUser) {
         axiosPublic
@@ -71,12 +72,14 @@ const AuthProvider = ({ children }) => {
           .then((response) => {
             console.log("Token in client side: ", response.data);
           });
+        setLoading(false);
       } else {
         axiosPublic
           .post("/clearCookie", email, { withCredentials: true })
           .then((response) => {
             console.log(response.data);
           });
+        setLoading(false);
       }
       setLoading(false);
     });
