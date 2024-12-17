@@ -105,7 +105,7 @@ const MyPostedJobs = () => {
     <>
       <div className="min-h-screen p-4 bg-[#F0F5F3]">
         <h2 className="text-center font-medium text-xl md:text-2xl lg:text-4xl font-EbGaramond text-[#31795A] py-6">
-          Your Posted Jobs
+          Manage Your Job Postings
         </h2>
 
         <div className="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -119,19 +119,27 @@ const MyPostedJobs = () => {
                   {myPostedJob.jobTitle}
                 </h2>
                 <p className="text-gray-700 mt-2 flex items-center gap-x-2">
-                  <TbFileDescription className="text-gray-600" />
-                  {myPostedJob.description}
+                  <span className="text-sm">
+                    <span className="text-sm md:text-base lg:text-lg font-bold font-EbGaramond">
+                      Description:{"  "}
+                    </span>
+                    {myPostedJob.description}
+                  </span>
                 </p>
                 <p className="text-gray-600 mt-1 flex items-center gap-x-2">
-                  <MdEmail className="text-gray-600" /> {myPostedJob.email}
+                  <MdEmail className="text-gray-600 text-lg" />
+                  <span>Email: {myPostedJob.email}</span>
                 </p>
                 <p className="uppercase flex items-center gap-x-2">
-                  <BiCategory className="text-gray-600" />
-                  {myPostedJob.category}
+                  <BiCategory className="text-gray-600 text-lg" />
+                  <span>Category: {myPostedJob.category}</span>
                 </p>
                 <p className="text-gray-600 mt-1 flex items-center gap-x-2">
-                  <BsCurrencyDollar className="text-gray-600" />
-                  {myPostedJob.minimumPrice} -{myPostedJob.maximumPrice}
+                  <BsCurrencyDollar className="text-gray-600 text-lg" />
+                  <span>
+                    Price Range: ${myPostedJob.minimumPrice} - $
+                    {myPostedJob.maximumPrice}
+                  </span>
                 </p>
                 <div className="card-actions justify-end mt-4 space-x-2">
                   <button
