@@ -1,8 +1,17 @@
-# React + Vite
+# [Easy Hire](https://easy-hire-e14d3.web.app/)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## About Easy Hire
 
-Currently, two official plugins are available:
+Easy Hire is a full-stack job marketplace designed to connect job seekers with employers in a seamless and intuitive way. The platform allows users to post jobs, bid on projects, and manage job requests with a clean, user-friendly interface. Built with a focus on simplicity and functionality, Easy Hire streamlines the hiring and job-seeking process.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+
+- **Job Posting and Management:** Employers can post jobs with detailed descriptions, deadlines, and budget ranges. Jobs can be updated or deleted as needed.
+- **Dynamic Bidding System:** Users can bid on posted jobs, specifying their proposed price and deadline. Employers can accept or reject bids with ease.
+- **Category Browsing:** Jobs are organized into categories such as Web Development, Digital Marketing, and Graphic Design for easier navigation.
+- **Secure and Personalized Dashboard:** Each user has access to a personal dashboard for managing their jobs and bids.
+- **Responsive and Secure:** The website is fully responsive and incorporates JWT authentication for secure user access.
+
+---
+
+Feel free to explore the platform and provide your feedback!
