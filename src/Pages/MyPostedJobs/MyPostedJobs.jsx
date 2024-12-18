@@ -9,6 +9,7 @@ import { BsCurrencyDollar } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import { BiCategory } from "react-icons/bi";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import AnimatedComponent from "../../Components/SocialLogin/AnimatedComponent/AnimatedComponent";
 const MyPostedJobs = () => {
   const { user } = useAuth();
   // Axios public and axios secure
@@ -88,7 +89,7 @@ const MyPostedJobs = () => {
     });
   };
 
-  //Open Modal  
+  //Open Modal
 
   const openModal = (job) => {
     setSelectedJob(job);
@@ -103,9 +104,11 @@ const MyPostedJobs = () => {
   return (
     <>
       <div className="min-h-screen p-4 bg-[#F0F5F3]">
-        <h2 className="text-center font-medium text-xl md:text-2xl lg:text-4xl font-EbGaramond text-[#31795A] py-6">
-          Manage Your Posted Jobs
-        </h2>
+        <AnimatedComponent animation="zoom-out">
+          <h2 className="text-center font-medium text-xl md:text-2xl lg:text-4xl font-EbGaramond text-[#31795A] py-6">
+            Manage Your Posted Jobs
+          </h2>
+        </AnimatedComponent>
 
         <div className="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {myPostedJobs.map((myPostedJob) => (

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AnimatedComponent from "../../../Components/SocialLogin/AnimatedComponent/AnimatedComponent";
 
 const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -31,34 +32,38 @@ const FAQ = () => {
   ];
   return (
     <>
-      <div className="max-w-screen-2xl mx-auto space-y-4 my-20 p-4 md:p-0">
-        <h2 className="text-[#31795A] text-2xl md:text-3xl lg:text-5xl font-medium font-EbGaramond py-4">
-          Frequently Asks Questions
-        </h2>
-        {data.map((item, index) => (
-          <div
-            key={index}
-            className="border rounded-lg overflow-hidden shadow-sm"
-          >
-            {/* Question Section */}
+      <AnimatedComponent animation="fade-right" duration={3000}>
+        <div className="max-w-screen-2xl mx-auto space-y-4 my-20 p-4 md:p-0">
+          <h2 className="text-[#31795A] text-2xl md:text-3xl lg:text-5xl font-medium font-EbGaramond py-4">
+            Frequently Asks Questions
+          </h2>
+          {data.map((item, index) => (
             <div
-              className="flex justify-between items-center p-4 bg-gray-100 cursor-pointer"
-              onClick={() => toggleAccordion(index)}
+              key={index}
+              className="border rounded-lg overflow-hidden shadow-sm"
             >
-              <h3 className="font-semibold text-lg">{item.question}</h3>
-              <span className="text-2xl">
-                {activeIndex === index ? "−" : "+"}
-              </span>
-            </div>
-            {/* Answer Section */}
-            {activeIndex === index && (
-              <div className="p-4">
-                <p className= "text-balance md:text-lg">{item.answer}</p>
+              {/* Question Section */}
+              <div
+                className="flex justify-between items-center p-4 bg-gray-100 cursor-pointer"
+                onClick={() => toggleAccordion(index)}
+              >
+                <h3 className="font-semibold text-lg">{item.question}</h3>
+                <span className="text-2xl">
+                  {activeIndex === index ? "−" : "+"}
+                </span>
               </div>
-            )}
-          </div>
-        ))}
-      </div>
+              {/* Answer Section */}
+              {activeIndex === index && (
+                <AnimatedComponent animation="fade" duration={1000}>
+                  <div className="p-4">
+                    <p className="text-balance md:text-lg">{item.answer}</p>
+                  </div>
+                </AnimatedComponent>
+              )}
+            </div>
+          ))}
+        </div>
+      </AnimatedComponent>
     </>
   );
 };

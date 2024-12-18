@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import logo from "../../assets/WebsiteLogo/Logo-design-illustration-on-transparent-background-PNG.png";
 import { BiMenu } from "react-icons/bi";
 import { useState } from "react";
+import AnimatedComponent from "../../Components/SocialLogin/AnimatedComponent/AnimatedComponent";
 const ResponsiveNavbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { user, logout, loading } = useAuth();
@@ -30,7 +31,7 @@ const ResponsiveNavbar = () => {
   if (loading) {
     return (
       <div className="flex justify-center">
-        <span className="loading loading-dots loading-lg text-[#1563DF]"></span>
+        <span className="loading loading-bars loading-lg text-[#31795A]"></span>
       </div>
     );
   }
@@ -43,7 +44,6 @@ const ResponsiveNavbar = () => {
       <li>
         <NavLink
           to="/"
-          exact
           className={({ isActive }) =>
             isActive
               ? "text-[#31795A] bg-none md:text-lg font-EbGaramond font-medium"
@@ -105,86 +105,89 @@ const ResponsiveNavbar = () => {
   );
   return (
     <>
-      <div className="navbar bg-base-100 max-w-[1800px] mx-auto  mt-10 mb-5 p-4 shadow-md rounded-lg">
-        {" "}
-        <div className="navbar-start">
+      <AnimatedComponent animation='fade-down'>
+        <div className="navbar bg-base-100 max-w-[1800px] mx-auto  mt-10 mb-5 p-4 shadow-md rounded-lg">
           {" "}
-          <div className="dropdown">
+          <div className="navbar-start">
             {" "}
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-sm md:btn-md bg-[#31795A] text-white lg:hidden hover:bg-[#265a43] transition duration-300"
-              onClick={toggleDropdown}
-            >
+            <div className="dropdown">
               {" "}
-              <BiMenu className="text-xl md:text-2xl" />{" "}
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-sm md:btn-md bg-[#31795A] text-white lg:hidden hover:bg-[#265a43] transition duration-300"
+                onClick={toggleDropdown}
+              >
+                {" "}
+                <BiMenu className="text-xl md:text-2xl" />{" "}
+              </div>{" "}
+              <ul
+                className={`dropdown-content menu bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow-lg border border-gray-200 transition transform origin-top-left duration-300 ${
+                  dropdownOpen ? "scale-100" : "scale-0"
+                }`}
+              >
+                {" "}
+                {navLinks}{" "}
+              </ul>{" "}
             </div>{" "}
-            <ul
-              className={`dropdown-content menu bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow-lg border border-gray-200 transition transform origin-top-left duration-300 ${
-                dropdownOpen ? "scale-100" : "scale-0"
-              }`}
-            >
+            <Link to="/">
+              {" "}
+              <p className="text-xl cursor-pointer flex items-center md:gap-x-2">
+                {" "}
+                <img src={logo} className="w-10" alt="Easy Hire Logo" /> Easy
+                Hire{" "}
+              </p>{" "}
+            </Link>{" "}
+          </div>{" "}
+          <div className="navbar-end hidden lg:flex">
+            {" "}
+            <ul className="menu menu-horizontal px-1 space-x-4">
               {" "}
               {navLinks}{" "}
             </ul>{" "}
           </div>{" "}
-          <Link to="/">
+          <div className="navbar-end gap-x-3">
             {" "}
-            <p className="text-xl cursor-pointer flex items-center md:gap-x-2">
-              {" "}
-              <img src={logo} className="w-10" alt="Easy Hire Logo" /> Easy Hire{" "}
-            </p>{" "}
-          </Link>{" "}
-        </div>{" "}
-        <div className="navbar-end hidden lg:flex">
-          {" "}
-          <ul className="menu menu-horizontal px-1 space-x-4">
-            {" "}
-            {navLinks}{" "}
-          </ul>{" "}
-        </div>{" "}
-        <div className="navbar-end gap-x-3">
-          {" "}
-          {user ? (
-            <div className="avatar" title={user?.displayName}>
-              {" "}
-              <div className="ring-[#31795A] ring-offset-base-100 w-8 rounded-full ring ring-offset-2">
+            {user ? (
+              <div className="avatar" title={user?.displayName}>
                 {" "}
-                <img
-                  src={user.photoURL ? user.photoURL : null}
-                  alt={user?.displayName}
-                />{" "}
-              </div>{" "}
-            </div>
-          ) : null}{" "}
-          {user ? (
-            <button
-              onClick={handleLogout}
-              className="btn text-sm md:text-base font-serif bg-[#31795A] btn-sm md:btn-md rounded-md hover:bg-[#265a43] transition duration-300 text-white"
-            >
-              {" "}
-              Logout{" "}
-            </button>
-          ) : (
-            <>
-              {" "}
-              <Link to="/signUp">
+                <div className="ring-[#31795A] ring-offset-base-100 w-8 rounded-full ring ring-offset-2">
+                  {" "}
+                  <img
+                    src={user.photoURL ? user.photoURL : null}
+                    alt={user?.displayName}
+                  />{" "}
+                </div>{" "}
+              </div>
+            ) : null}{" "}
+            {user ? (
+              <button
+                onClick={handleLogout}
+                className="btn text-sm md:text-base font-serif bg-[#31795A] btn-sm md:btn-md rounded-md hover:bg-[#265a43] transition duration-300 text-white"
+              >
                 {" "}
-                <button className="btn btn-outline rounded-md">
-                  Sign Up
-                </button>{" "}
-              </Link>{" "}
-              <Link to="/signIn">
+                Logout{" "}
+              </button>
+            ) : (
+              <>
                 {" "}
-                <button className="btn btn-success rounded-md">
-                  Sign in
-                </button>{" "}
-              </Link>{" "}
-            </>
-          )}{" "}
-        </div>{" "}
-      </div>
+                <Link to="/signUp">
+                  {" "}
+                  <button className="btn btn-outline rounded-md">
+                    Sign Up
+                  </button>{" "}
+                </Link>{" "}
+                <Link to="/signIn">
+                  {" "}
+                  <button className="btn btn-success rounded-md">
+                    Sign in
+                  </button>{" "}
+                </Link>{" "}
+              </>
+            )}{" "}
+          </div>{" "}
+        </div>
+      </AnimatedComponent>
     </>
   );
 };
