@@ -1,0 +1,9 @@
+.nav-link {
+  text-decoration: none;
+  color: #000; /* Default link color */
+}
+
+.nav-link.active {
+  background: none; /* Remove black background */
+  color: #007bff; /* Highlight active link with a new color */
+}

@@ -3,7 +3,9 @@ import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import logo from "../../assets/WebsiteLogo/Logo-design-illustration-on-transparent-background-PNG.png";
 import { BiMenu } from "react-icons/bi";
+import { useState } from "react";
 const ResponsiveNavbar = () => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const { user, logout, loading } = useAuth();
   const handleLogout = () => {
     Swal.fire({
@@ -32,85 +34,123 @@ const ResponsiveNavbar = () => {
     );
   }
 
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
   const navLinks = (
     <>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink to="/" className="nav-link" activeClassName="active">
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/addJobs">Add Job</NavLink>
+        <NavLink to="/addJobs" className="nav-link" activeClassName="active">
+          Add Job
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/myPostedJobs">My Posted Jobs</NavLink>
+        <NavLink
+          to="/myPostedJobs"
+          className="nav-link"
+          activeClassName="active"
+        >
+          My Posted Jobs
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/myBidJobs">My Bids</NavLink>
+        <NavLink to="/myBidJobs" className="nav-link" activeClassName="active">
+          My Bids
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/bidRequest">Bid Request</NavLink>
+        <NavLink to="/bidRequest" className="nav-link" activeClassName="active">
+          Bid Request
+        </NavLink>
       </li>
     </>
   );
   return (
     <>
-      <div className="navbar bg-base-100 max-w-screen-2xl mx-auto my-10">
+      <div className="navbar bg-base-100 max-w-[1800px] mx-auto  my-10 p-4 shadow-md rounded-lg">
+        {" "}
         <div className="navbar-start">
+          {" "}
           <div className="dropdown">
+            {" "}
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-sm md:btn-md bg-[#D2F34C] lg:hidden"
+              className="btn btn-sm md:btn-md bg-[#31795A] text-white lg:hidden hover:bg-[#265a43] transition duration-300"
+              onClick={toggleDropdown}
             >
-              <BiMenu className="text-xl md:text-2xl" />
-            </div>
+              {" "}
+              <BiMenu className="text-xl md:text-2xl" />{" "}
+            </div>{" "}
             <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className={`dropdown-content menu bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow-lg border border-gray-200 transition transform origin-top-left duration-300 ${
+                dropdownOpen ? "scale-100" : "scale-0"
+              }`}
             >
-              {navLinks}
-            </ul>
-          </div>
+              {" "}
+              {navLinks}{" "}
+            </ul>{" "}
+          </div>{" "}
           <Link to="/">
+            {" "}
             <p className="text-xl cursor-pointer flex items-center md:gap-x-2">
-              <img src={logo} className="w-10" alt="" /> Easy Hire
-            </p>
-          </Link>
-        </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{navLinks}</ul>
-        </div>
+              {" "}
+              <img src={logo} className="w-10" alt="Easy Hire Logo" /> Easy Hire{" "}
+            </p>{" "}
+          </Link>{" "}
+        </div>{" "}
+        <div className="navbar-end hidden lg:flex">
+          {" "}
+          <ul className="menu menu-horizontal px-1 space-x-4">
+            {" "}
+            {navLinks}{" "}
+          </ul>{" "}
+        </div>{" "}
         <div className="navbar-end gap-x-3">
+          {" "}
           {user ? (
             <div className="avatar" title={user?.displayName}>
-              <div
-                className="ring-[#31795A] ring-offset-base-100 w-8
-                              rounded-full ring ring-offset-2"
-              >
+              {" "}
+              <div className="ring-[#31795A] ring-offset-base-100 w-8 rounded-full ring ring-offset-2">
+                {" "}
                 <img
                   src={user.photoURL ? user.photoURL : null}
                   alt={user?.displayName}
-                />
-              </div>
+                />{" "}
+              </div>{" "}
             </div>
-          ) : null}
+          ) : null}{" "}
           {user ? (
             <button
               onClick={handleLogout}
-              className="btn rounded-none text-sm md:text-base font-serif bg-[#D2F34C] btn-sm md:btn-md "
+              className="btn text-sm md:text-base font-serif bg-[#31795A] btn-sm md:btn-md rounded-md hover:bg-[#265a43] transition duration-300 text-white"
             >
-              Logout
+              {" "}
+              Logout{" "}
             </button>
           ) : (
             <>
+              {" "}
               <Link to="/signUp">
-                <button className="btn btn-outline rounded-md">Sign Up</button>
-              </Link>
+                {" "}
+                <button className="btn btn-outline rounded-md">
+                  Sign Up
+                </button>{" "}
+              </Link>{" "}
               <Link to="/signIn">
-                <button className="btn btn-success rounded-md">Sign in</button>
-              </Link>
+                {" "}
+                <button className="btn btn-success rounded-md">
+                  Sign in
+                </button>{" "}
+              </Link>{" "}
             </>
-          )}
-        </div>
+          )}{" "}
+        </div>{" "}
       </div>
     </>
   );

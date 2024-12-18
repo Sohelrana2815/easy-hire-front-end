@@ -17,8 +17,8 @@ const AddJobs = () => {
       jobTitle: data.jobTitle,
       deadline: data.deadline,
       description: data.description,
-      minimumPrice: data.minimumPrice,
-      maximumPrice: data.maximumPrice,
+      minimumPrice: parseFloat(data.minimumPrice),
+      maximumPrice: parseFloat(data.maximumPrice),
       category: data.category,
     };
 

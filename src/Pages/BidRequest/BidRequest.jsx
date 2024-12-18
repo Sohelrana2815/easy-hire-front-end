@@ -1,3 +1,4 @@
+import noBidReqImg from "../../assets/Bid Req/no bid request.png";
 import toast, { Toaster } from "react-hot-toast";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useBidRequests from "../../Hooks/useBidRequests";
@@ -39,53 +40,58 @@ const BidRequest = () => {
 
   return (
     <>
-      <div className="max-w-screen-2xl mx-auto">
-        {bidRequests.length > 0 ? (
-          <div className="overflow-x-auto">
-            <h2 className="text-center">Bid Requests: {bidRequests.length}</h2>
-            <table className="table">
-              {/* head */}
-              <thead>
-                <tr>
-                  <th>NO.</th>
-                  <th>Job Title</th>
-                  <th>Bider Email</th>
-                  <th>Deadline</th>
-                  <th>Price</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {/* row 1 */}
-                {bidRequests.map((bidRequest, index) => {
-                  const { percent, label } = getProgressDetails(
-                    bidRequest.status
-                  );
-                  return (
-                    <tr key={bidRequest._id} className="hover">
-                      <th>{index + 1}</th>
-                      <td>{bidRequest.jobTitle}</td>
-                      <td>{bidRequest.email}</td>
-                      <td>{bidRequest.deadline}</td>
-                      <td>{bidRequest.price}</td>
-                      <td>
-                        {/* SHOW STATUS ACCORDING TO STATUS TEXT (PENDING) */}
-                        {bidRequest.status === "pending" && (
-                          <p className="flex items-center">Pending 🟡</p>
-                        )}
-                        {/* ACCEPT */}
-                        {bidRequest.status === "accept" && "In Progress 🟢"}
-                        {/* REJECT */}
-                        {bidRequest.status === "reject" && "Rejected ❌"}
-                        {/* COMPLETE */}
-                        {bidRequest.status === "complete" && "Completed"}
-                      </td>
-
-                      {/* Button conditional */}
-                      <td>
-                        {bidRequest.status === "pending" && (
-                          <>
+      <div className="min-h-screen p-4 bg-[#F0F5F3]">
+        <div className="max-w-screen-2xl mx-auto">
+          {bidRequests.length > 0 ? (
+            <div className="overflow-x-auto bg-white rounded-lg shadow-lg">
+              <h2 className="text-center text-2xl font-medium mb-4">
+                Bid Requests: {bidRequests.length}
+              </h2>
+              <table className="table-auto w-full text-left">
+                {/* head */}
+                <thead className="bg-[#31795A] text-white">
+                  <tr>
+                    <th className="px-4 py-2">NO.</th>
+                    <th className="px-4 py-2">Job Title</th>
+                    <th className="px-4 py-2">Bider Email</th>
+                    <th className="px-4 py-2">Deadline</th>
+                    <th className="px-4 py-2">Price</th>
+                    <th className="px-4 py-2">Status</th>
+                    <th className="px-4 py-2">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {bidRequests.map((bidRequest, index) => {
+                    const { percent, label } = getProgressDetails(
+                      bidRequest.status
+                    );
+                    return (
+                      <tr key={bidRequest._id} className="hover:bg-gray-100">
+                        <td className="border px-4 py-2">{index + 1}</td>
+                        <td className="border px-4 py-2">
+                          {bidRequest.jobTitle}
+                        </td>
+                        <td className="border px-4 py-2">{bidRequest.email}</td>
+                        <td className="border px-4 py-2">
+                          {bidRequest.deadline}
+                        </td>
+                        <td className="border px-4 py-2">{bidRequest.price}</td>
+                        <td className="border px-4 py-2">
+                          {bidRequest.status === "pending" && (
+                            <p className="flex items-center">Pending 🟡</p>
+                          )}
+                          {bidRequest.status === "accept" && (
+                            <p className="flex items-center">In Progress 🟢</p>
+                          )}
+                          {bidRequest.status === "reject" && (
+                            <p className="flex items-center">Rejected ❌</p>
+                          )}
+                          {bidRequest.status === "complete" && (
+                            <p className="flex items-center">Completed ✅</p>
+                          )}
+                        </td>
+                        <td className="border px-4 py-2 text-center">
+                          {bidRequest.status === "pending" && (
                             <div className="flex items-center gap-2">
                               <button
                                 title="Accept"
@@ -102,31 +108,40 @@ const BidRequest = () => {
                                 ❌ Reject
                               </button>
                             </div>
-                          </>
-                        )}
-                        {(bidRequest.status === "accept" ||
-                          bidRequest.status === "complete") && (
-                          <div>
-                            <ProgressBar
-                              percent={percent}
-                              filledBackground="linear-gradient(to right, #4caf50, #8bc34a)"
-                            />
-                            <h3>{label}</h3>
-                          </div>
-                        )}
-
-                        {bidRequest.status === "reject" && null}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        ) : (
-          <p>No Bid Requests available</p>
-        )}
+                          )}
+                          {(bidRequest.status === "accept" ||
+                            bidRequest.status === "complete") && (
+                            <div>
+                              <ProgressBar
+                                percent={percent}
+                                filledBackground="linear-gradient(to right, #4caf50, #8bc34a)"
+                              />
+                              <h3>{label}</h3>
+                            </div>
+                          )}
+                          {bidRequest.status === "reject" && null}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center min-h-screen">
+              <img
+                src={noBidReqImg}
+                alt="No Bid Requests"
+                className="w-1/2 md:w-1/3 lg:w-1/4 rounded"
+              />
+              <p className="text-center text-lg mt-4">
+                No Bid Requests available
+              </p>
+            </div>
+          )}
+        </div>
       </div>
+
       <Toaster />
     </>
   );

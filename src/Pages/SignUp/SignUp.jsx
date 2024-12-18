@@ -33,23 +33,25 @@ const SignUp = () => {
     });
   };
   return (
-    <div className="relative min-h-80 bg-[#244034]">
-      <div className="flex flex-col justify-center items-center min-h-80 text-white">
-        <h2 className="text-sm md:text-5xl font-EbGaramond">Register</h2>
-        <p className="mt-4 text-lg">
-          Create an account & Start posting or hiring talents
+    <div className="relative min-h-[30vh] bg-[#244034]">
+      <div className="flex flex-col justify-center items-center min-h-[30vh] p-4 text-white text-center">
+        <h2 className="text-2xl md:text-5xl font-EbGaramond font-bold">
+          Register
+        </h2>
+        <p className="mt-4 text-sm md:text-lg lg:text-xl">
+          Create an account & start posting or hiring talents
         </p>
       </div>
 
-      <div className="bg-[#EFF6F3] min-h-[62vh] flex items-center justify-center">
+      <div className="bg-[#EFF6F3] min-h-screen flex justify-center">
         {/* Login Fo rm */}
-        <div className="w-1/2 mt-10">
+        <div className="bg-[#EFF6F3] min-h-screen flex items-center justify-center p-4 w-1/2">
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="card-body bg-base-100  rounded-2xl p-10"
+            className="w-full max-w-md bg-base-100 p-6 rounded-2xl shadow-lg"
           >
-            <div>
-              <h2 className="text-center md:text-2xl text-xl xl:text-4xl font-medium font-EbGaramond">
+            <div className="mb-4">
+              <h2 className="text-center text-xl md:text-2xl xl:text-4xl font-medium font-EbGaramond">
                 Create Account
               </h2>
               <h2 className="text-center">
@@ -60,7 +62,7 @@ const SignUp = () => {
               </h2>
             </div>
             {/* Name */}
-            <div className="form-control">
+            <div className="form-control mb-4">
               <label className="label">
                 <span className="label-text">Name</span>
               </label>
@@ -68,12 +70,12 @@ const SignUp = () => {
                 type="text"
                 {...register("name")}
                 placeholder="John"
-                className="input input-bordered rounded-md bg-[#31795A17]"
+                className="input input-bordered rounded-md bg-[#31795A17] w-full"
                 required
               />
             </div>
             {/* Email */}
-            <div className="form-control">
+            <div className="form-control mb-4">
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
@@ -81,12 +83,12 @@ const SignUp = () => {
                 type="email"
                 {...register("email")}
                 placeholder="example@gmail.com"
-                className="input input-bordered rounded-md bg-[#31795A17]"
+                className="input input-bordered rounded-md bg-[#31795A17] w-full"
                 required
               />
             </div>
             {/* Password */}
-            <div className="form-control">
+            <div className="form-control mb-4">
               <label className="label">
                 <span className="label-text">Password</span>
               </label>
@@ -94,12 +96,12 @@ const SignUp = () => {
                 type="password"
                 {...register("password")}
                 placeholder="Enter Password"
-                className="input input-bordered rounded-md bg-[#31795A17]"
+                className="input input-bordered rounded-md bg-[#31795A17] w-full"
                 required
               />
             </div>
             {/* Photo URL */}
-            <div className="form-control">
+            <div className="form-control mb-4">
               <label className="label">
                 <span className="label-text">Photo URL</span>
               </label>
@@ -107,14 +109,14 @@ const SignUp = () => {
                 type="text"
                 {...register("photoURL")}
                 placeholder="Enter Photo URL"
-                className="input input-bordered rounded-md bg-[#31795A17]"
+                className="input input-bordered rounded-md bg-[#31795A17] w-full"
                 required
               />
             </div>
-            <div className="form-control mt-6">
+            <div className="form-control my-6">
               <button
                 type="submit"
-                className="btn bg-[#31795A] text-white rounded-md uppercase text-base"
+                className="btn bg-[#31795A] text-white rounded-md uppercase text-base w-full"
               >
                 Sign up
               </button>
