@@ -12,7 +12,7 @@ const SignIn = () => {
   const { loginUser, updateUserProfile } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
-  console.log("location in the login page", location);
+  // console.log("location in the login page", location);
 
   const { register, handleSubmit, reset } = useForm();
 
@@ -20,8 +20,8 @@ const SignIn = () => {
     const { email, password } = data;
 
     loginUser(email, password)
-      .then((result) => {
-        console.log(result.user);
+      .then(() => {
+        // console.log(result.user);
         updateUserProfile();
         reset();
         // Navigate after login

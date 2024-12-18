@@ -15,12 +15,12 @@ const SignUp = () => {
   const onSubmit = (data) => {
     const { name, photoURL, email, password } = data;
     // Register
-    createNewUser(email, password).then((result) => {
-      console.log(result.user);
+    createNewUser(email, password).then(() => {
+      // console.log(result.user);
       // Update profile
       navigate(location?.state ? location.state : "/");
       updateUserProfile(name, photoURL).then(() => {
-        console.log("Update successfully");
+        // console.log("Update successfully");
         if ((name, photoURL)) {
           reset();
           Swal.fire({

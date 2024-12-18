@@ -39,7 +39,6 @@ const MyBids = () => {
   // sort event handler
 
   const handleSort = (order) => {
-    console.log(order);
     setSortOrder(order);
   };
   return (
