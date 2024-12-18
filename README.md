@@ -1,5 +1,5 @@
 # Easy Hire
-LIVE SITE URL: [Easy Hire] (https://easy-hire-e14d3.web.app/)
+LIVE SITE URL: [Easy Hire Web App](https://easy-hire-e14d3.web.app/)
 ## About Easy Hire
 
 Easy Hire is a full-stack job marketplace designed to connect job seekers with employers in a seamless and intuitive way. The platform allows users to post jobs, bid on projects, and manage job requests with a clean, user-friendly interface. Built with a focus on simplicity and functionality, Easy Hire streamlines the hiring and job-seeking process.
