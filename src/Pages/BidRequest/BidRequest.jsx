@@ -79,10 +79,12 @@ const BidRequest = () => {
       </Helmet>
       <AnimatedComponent animation="fade-up">
         <div className="min-h-screen p-4 bg-[#F0F5F3]">
-          <h2 className="text-center text-base lg:text-lg font-medium py-8 xl:text-xl md:w-1/2 mx-auto xl:w-1/4">
-            Welcome to Your Bid Requests! Here you can manage all the bids
-            you&apos;ve received for your job postings.
-          </h2>
+          {bidRequests.length ? (
+            <h2 className="text-center text-base lg:text-lg font-medium py-8 xl:text-xl md:w-1/2 mx-auto xl:w-1/4">
+              Welcome to Your Bid Requests! Here you can manage all the bids
+              you&apos;ve received for your job postings.
+            </h2>
+          ) : null}
           <div className="max-w-screen-2xl mx-auto">
             {bidRequests.length > 0 ? (
               <div className="overflow-x-auto bg-white rounded-lg shadow-lg">
