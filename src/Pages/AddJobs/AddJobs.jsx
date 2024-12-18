@@ -4,7 +4,7 @@ import useAuth from "../../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import AnimatedComponent from "../../Components/SocialLogin/AnimatedComponent/AnimatedComponent";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const AddJobs = () => {
   const navigate = useNavigate();
@@ -39,9 +39,9 @@ const AddJobs = () => {
 
   return (
     <>
-    <Helmet>
-      <title>Easy Hire | Add Job</title>
-    </Helmet>
+      <Helmet>
+        <title>Easy Hire | Add Job</title>
+      </Helmet>
       {/* Banner section */}
       <div className="border h-[30vh] bg-[#244034]">
         <div className="flex flex-col items-center justify-center min-h-[30vh] p-4 text-center">

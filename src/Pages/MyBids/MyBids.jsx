@@ -5,7 +5,8 @@ import { FaCheckCircle } from "react-icons/fa";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import AnimatedComponent from "../../Components/SocialLogin/AnimatedComponent/AnimatedComponent";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
+
 const MyBids = () => {
   // sort asc order
   const [sortOrder, setSortOrder] = useState(null);

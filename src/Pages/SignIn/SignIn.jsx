@@ -5,7 +5,7 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import AnimatedComponent from "../../Components/SocialLogin/AnimatedComponent/AnimatedComponent";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const SignIn = () => {
   const [err, setErr] = useState("");

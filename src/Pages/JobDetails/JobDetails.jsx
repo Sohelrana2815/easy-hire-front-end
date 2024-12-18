@@ -6,7 +6,8 @@ import Swal from "sweetalert2";
 import { FaCopy, FaFacebook, FaTwitter } from "react-icons/fa6";
 import { BsClock, BsCurrencyDollar } from "react-icons/bs";
 import { MdCategory } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
+
 const JobDetails = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
@@ -59,7 +60,7 @@ const JobDetails = () => {
   return (
     <>
       <Helmet>
-        <title>Easy Hire | Job Details </title>
+        <title>Easy Hire | Job Details</title>
       </Helmet>
       {/* Banner section */}
       <div className="border h-[20vh] bg-[#244034]">

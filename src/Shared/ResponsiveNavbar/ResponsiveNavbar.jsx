@@ -105,7 +105,7 @@ const ResponsiveNavbar = () => {
   return (
     <>
       <AnimatedComponent animation="fade-down">
-        <div className="navbar bg-base-100 max-w-[1800px] mx-auto  mt-10 mb-5 p-4 shadow-md rounded-lg">
+        <div className="navbar bg-base-100  mt-10 mb-5 p-4 shadow-md rounded-lg">
           {" "}
           <div className="navbar-start">
             {" "}

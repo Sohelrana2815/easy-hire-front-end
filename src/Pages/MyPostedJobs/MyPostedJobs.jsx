@@ -12,7 +12,8 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import AnimatedComponent from "../../Components/SocialLogin/AnimatedComponent/AnimatedComponent";
 import SkeletonWrapper from "../../Components/SkeletonWrapper/SkeletonWrapper";
 import useLoading from "../../Hooks/useLoading";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
+
 const MyPostedJobs = () => {
   const loading = useLoading();
   const { user } = useAuth();
@@ -108,7 +109,7 @@ const MyPostedJobs = () => {
   return (
     <>
       <Helmet>
-        <title>Easy Hire | My Posted Jobs </title>
+        <title>Easy Hire | My Posted Jobs</title>
       </Helmet>
       <div className="min-h-screen p-4 bg-[#F0F5F3]">
         <AnimatedComponent animation="zoom-out">

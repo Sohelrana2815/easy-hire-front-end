@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import AnimatedComponent from "../../Components/SocialLogin/AnimatedComponent/AnimatedComponent";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const SignUp = () => {
   const location = useLocation();
@@ -36,9 +36,9 @@ const SignUp = () => {
   };
   return (
     <>
-    <Helmet>
-      <title>Easy Hire | Sign up</title>
-    </Helmet>
+      <Helmet>
+        <title>Easy Hire | Sign up</title>
+      </Helmet>
       <div className="relative min-h-[30vh] bg-[#244034]">
         <div className="flex flex-col justify-center items-center min-h-[30vh] p-4 text-white text-center">
           <h2 className="text-2xl md:text-5xl font-EbGaramond font-bold">

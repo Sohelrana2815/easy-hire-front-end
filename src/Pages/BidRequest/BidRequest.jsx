@@ -5,7 +5,8 @@ import "react-step-progress-bar/styles.css";
 import { ProgressBar } from "react-step-progress-bar";
 import Swal from "sweetalert2";
 import AnimatedComponent from "../../Components/SocialLogin/AnimatedComponent/AnimatedComponent";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
+
 const BidRequest = () => {
   const { bidRequests, refetch } = useBidRequests();
   const axiosSecure = useAxiosSecure();
