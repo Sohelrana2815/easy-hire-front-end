@@ -10,7 +10,11 @@ import { MdEmail } from "react-icons/md";
 import { BiCategory } from "react-icons/bi";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import AnimatedComponent from "../../Components/SocialLogin/AnimatedComponent/AnimatedComponent";
+import SkeletonWrapper from "../../Components/SkeletonWrapper/SkeletonWrapper";
+import useLoading from "../../Hooks/useLoading";
+import { Helmet } from "react-helmet";
 const MyPostedJobs = () => {
+  const loading = useLoading();
   const { user } = useAuth();
   // Axios public and axios secure
   const axiosSecure = useAxiosSecure();
@@ -103,6 +107,9 @@ const MyPostedJobs = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Easy Hire | My Posted Jobs </title>
+      </Helmet>
       <div className="min-h-screen p-4 bg-[#F0F5F3]">
         <AnimatedComponent animation="zoom-out">
           <h2 className="text-center font-medium text-xl md:text-2xl lg:text-4xl font-EbGaramond text-[#31795A] py-6">
@@ -117,45 +124,62 @@ const MyPostedJobs = () => {
               className="card bg-white rounded-md border shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out"
             >
               <div className="card-body p-6">
-                <h2 className="text-2xl font-bold text-gray-900">
-                  {myPostedJob.jobTitle}
-                </h2>
-                <p className="text-gray-700 mt-2 flex items-center gap-x-2">
-                  <span className="text-sm">
-                    <span className="text-sm md:text-base lg:text-lg font-bold font-EbGaramond">
-                      Description:{"  "}
+                <SkeletonWrapper loading={loading} width={200} height={30}>
+                  <h2 className="text-2xl font-bold text-gray-900">
+                    {myPostedJob.jobTitle}
+                  </h2>
+                </SkeletonWrapper>
+                <SkeletonWrapper loading={loading} width={300} height={25}>
+                  <p className="text-gray-700 mt-2 flex items-center gap-x-2">
+                    <span className="text-sm">
+                      <span className="text-sm md:text-base lg:text-lg font-bold font-EbGaramond">
+                        Description:{"  "}
+                      </span>
+                      {myPostedJob.description}
                     </span>
-                    {myPostedJob.description}
-                  </span>
-                </p>
-                <p className="text-gray-600 mt-1 flex items-center gap-x-2">
-                  <MdEmail className="text-gray-600 text-lg" />
-                  <span>Email: {myPostedJob.email}</span>
-                </p>
-                <p className="uppercase flex items-center gap-x-2">
-                  <BiCategory className="text-gray-600 text-lg" />
-                  <span>Category: {myPostedJob.category}</span>
-                </p>
-                <p className="text-gray-600 mt-1 flex items-center gap-x-2">
-                  <BsCurrencyDollar className="text-gray-600 text-lg" />
-                  <span>
-                    Price Range: ${myPostedJob.minimumPrice} - $
-                    {myPostedJob.maximumPrice}
-                  </span>
-                </p>
+                  </p>
+                </SkeletonWrapper>
+                <SkeletonWrapper loading={loading} width={200} height={20}>
+                  <p className="text-gray-600 mt-1 flex items-center gap-x-2">
+                    <MdEmail className="text-gray-600 text-lg" />
+                    <span>Email: {myPostedJob.email}</span>
+                  </p>
+                </SkeletonWrapper>
+                <SkeletonWrapper loading={loading} width={250} height={18}>
+                  <p className="uppercase flex items-center gap-x-2">
+                    <BiCategory className="text-gray-600 text-lg" />
+                    <span>Category: {myPostedJob.category}</span>
+                  </p>
+                </SkeletonWrapper>
+
+                <SkeletonWrapper loading={loading} width={200} height={20}>
+                  <p className="text-gray-600 mt-1 flex items-center gap-x-2">
+                    <BsCurrencyDollar className="text-gray-600 text-lg" />
+                    <span>
+                      Price Range: ${myPostedJob.minimumPrice} - $
+                      {myPostedJob.maximumPrice}
+                    </span>
+                  </p>
+                </SkeletonWrapper>
+
                 <div className="card-actions justify-end mt-4 space-x-2">
-                  <button
-                    onClick={() => openModal(myPostedJob)}
-                    className="btn bg-green-600 text-white hover:bg-green-700 hover:text-white"
-                  >
-                    <FaPen />
-                  </button>
-                  <button
-                    onClick={() => deleteMyJob(myPostedJob._id)}
-                    className="btn bg-red-600 text-white hover:bg-red-700"
-                  >
-                    <FaTrashCan />
-                  </button>
+                  <SkeletonWrapper loading={loading} width={50} height={50}>
+                    <button
+                      onClick={() => openModal(myPostedJob)}
+                      className="btn bg-green-600 text-white hover:bg-green-700 hover:text-white"
+                    >
+                      <FaPen />
+                    </button>
+                  </SkeletonWrapper>
+
+                  <SkeletonWrapper loading={loading} width={50} height={50}>
+                    <button
+                      onClick={() => deleteMyJob(myPostedJob._id)}
+                      className="btn bg-red-600 text-white hover:bg-red-700"
+                    >
+                      <FaTrashCan />
+                    </button>
+                  </SkeletonWrapper>
                 </div>
               </div>
             </div>

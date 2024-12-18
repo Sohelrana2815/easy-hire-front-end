@@ -1,4 +1,3 @@
-import "./NavBar.css";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
@@ -98,14 +97,14 @@ const ResponsiveNavbar = () => {
               : "text-base"
           }
         >
-          Bid Request
+          Bid Requests
         </NavLink>
       </li>
     </>
   );
   return (
     <>
-      <AnimatedComponent animation='fade-down'>
+      <AnimatedComponent animation="fade-down">
         <div className="navbar bg-base-100 max-w-[1800px] mx-auto  mt-10 mb-5 p-4 shadow-md rounded-lg">
           {" "}
           <div className="navbar-start">
