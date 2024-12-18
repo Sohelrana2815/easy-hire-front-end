@@ -88,7 +88,7 @@ const MyPostedJobs = () => {
     });
   };
 
-  //Open Modal
+  //Open Modal 
 
   const openModal = (job) => {
     setSelectedJob(job);
