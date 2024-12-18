@@ -1,9 +1,14 @@
+/* Define base styles for all nav links */
 .nav-link {
+  color: #000; /* Default text color */
+  padding: 8px 16px;
   text-decoration: none;
-  color: #000; /* Default link color */
+  transition: color 0.3s, background-color 0.3s;
 }
 
-.nav-link.active {
-  background: none; /* Remove black background */
-  color: #007bff; /* Highlight active link with a new color */
+/* Define styles for the active nav link */
+.active-link {
+  color: #31795a; /* Active text color */
+  background-color: transparent; /* Remove black background */
+  border-bottom: 2px solid #31795a; /* Add underline */
 }

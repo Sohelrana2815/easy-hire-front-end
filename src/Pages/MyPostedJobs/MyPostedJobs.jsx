@@ -104,7 +104,7 @@ const MyPostedJobs = () => {
     <>
       <div className="min-h-screen p-4 bg-[#F0F5F3]">
         <h2 className="text-center font-medium text-xl md:text-2xl lg:text-4xl font-EbGaramond text-[#31795A] py-6">
-          Manage Your Job Postings
+          Manage Your Posted Jobs
         </h2>
 
         <div className="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -1,29 +1,60 @@
 import noBidReqImg from "../../assets/Bid Req/no bid request.png";
-import toast, { Toaster } from "react-hot-toast";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useBidRequests from "../../Hooks/useBidRequests";
 import "react-step-progress-bar/styles.css";
 import { ProgressBar } from "react-step-progress-bar";
+import Swal from "sweetalert2";
 const BidRequest = () => {
   const { bidRequests, refetch } = useBidRequests();
   const axiosSecure = useAxiosSecure();
 
   // ACCEPT BID REQUEST FUNCTION
-  const acceptBidRequest = async (id) => {
-    const response = await axiosSecure.patch(`/acceptBidRequest/${id}`);
-    if (response.data.modifiedCount > 0) {
-      toast.success("Bid Request Accepted!");
-      refetch();
-    }
+  const acceptBidRequest = (id) => {
+    Swal.fire({
+      title: "Accept This Bid Request",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Confirm!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const response = await axiosSecure.patch(`/acceptBidRequest/${id}`);
+        if (response.data.modifiedCount > 0) {
+          refetch();
+          Swal.fire({
+            title: "Accepted!",
+            text: "Thank You For Accept The Request!",
+            icon: "success",
+          });
+        }
+      }
+    });
   };
   // REJECT BID REQUEST FUNCTION
-  const cancelBidRequest = async (id) => {
-    const response = await axiosSecure.patch(`/cancelBidRequest/${id}`);
-
-    if (response.data.modifiedCount > 0) {
-      toast.success("Bid Request canceled!");
-      refetch();
-    }
+  const cancelBidRequest = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "It Will Reject This Bid Request",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Confirm!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const response = await axiosSecure.patch(`/cancelBidRequest/${id}`);
+        if (response.data.modifiedCount > 0) {
+          refetch();
+          Swal.fire({
+            title: "Rejected!",
+            text: "Request Canceled Successfully!",
+            icon: "success",
+          });
+        }
+      }
+    });
+    refetch();
   };
 
   // GET PROGRESS DETAILS AND SHOW THE INFORMATION DYNAMICALLY
@@ -41,12 +72,13 @@ const BidRequest = () => {
   return (
     <>
       <div className="min-h-screen p-4 bg-[#F0F5F3]">
+        <h2 className="text-center text-base lg:text-lg font-medium py-8 xl:text-xl md:w-1/2 mx-auto xl:w-1/4">
+          Welcome to Your Bid Requests! Here you can manage all the bids
+          you&apos;ve received for your job postings.
+        </h2>
         <div className="max-w-screen-2xl mx-auto">
           {bidRequests.length > 0 ? (
             <div className="overflow-x-auto bg-white rounded-lg shadow-lg">
-              <h2 className="text-center text-2xl font-medium mb-4">
-                Bid Requests: {bidRequests.length}
-              </h2>
               <table className="table-auto w-full text-left">
                 {/* head */}
                 <thead className="bg-[#31795A] text-white">
@@ -141,8 +173,6 @@ const BidRequest = () => {
           )}
         </div>
       </div>
-
-      <Toaster />
     </>
   );
 };

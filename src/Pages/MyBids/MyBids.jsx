@@ -1,21 +1,36 @@
-import toast, { Toaster } from "react-hot-toast";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useMyBidJobs from "../../Hooks/useMyBidJobs";
 import { FcCancel } from "react-icons/fc";
 import { FaCheckCircle } from "react-icons/fa";
 import { useState } from "react";
+import Swal from "sweetalert2";
 const MyBids = () => {
   // sort asc order
   const [sortOrder, setSortOrder] = useState(null);
   const { myBidJobs, refetch } = useMyBidJobs(sortOrder);
   const axiosSecure = useAxiosSecure();
   const completeProject = async (id) => {
-    const response = await axiosSecure.patch(`/completeProject/${id}`);
+    Swal.fire({
+      title: "Submit the Project?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Confirm!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const response = await axiosSecure.patch(`/completeProject/${id}`);
+        if (response.data.modifiedCount > 0) {
+          refetch();
 
-    if (response.data.modifiedCount > 0) {
-      toast.success("Successfully Submit your project!");
-      refetch();
-    }
+          Swal.fire({
+            title: "Submitted!",
+            text: "Your Project has been submitted successfully!",
+            icon: "success",
+          });
+        }
+      }
+    });
   };
 
   // sort event handler
@@ -27,6 +42,11 @@ const MyBids = () => {
   return (
     <>
       <div className="min-h-screen p-4 bg-[#F0F5F3]">
+        <h2 className="text-center text-base lg:text-lg font-medium py-4 xl:text-xl md:w-1/2 mx-auto xl:w-1/3">
+          Keep an eye on your bids and stay engaged to maximize your chances of
+          success. Your dedication can lead to more opportunities and successful
+          projects.
+        </h2>
         <div className="max-w-screen-2xl mx-auto">
           {/* Dropdown */}
           <div className="dropdown mb-4">
@@ -127,8 +147,6 @@ const MyBids = () => {
           </div>
         </div>
       </div>
-
-      <Toaster />
     </>
   );
 };

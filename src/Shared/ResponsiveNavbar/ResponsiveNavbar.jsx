@@ -1,3 +1,4 @@
+import "./NavBar.css";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
@@ -40,31 +41,63 @@ const ResponsiveNavbar = () => {
   const navLinks = (
     <>
       <li>
-        <NavLink to="/" className="nav-link" activeClassName="active">
+        <NavLink
+          to="/"
+          exact
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#31795A] bg-none md:text-lg font-EbGaramond font-medium"
+              : "text-base"
+          }
+        >
           Home
         </NavLink>
       </li>
       <li>
-        <NavLink to="/addJobs" className="nav-link" activeClassName="active">
+        <NavLink
+          to="/addJobs"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#31795A] bg-none md:text-lg font-EbGaramond font-medium"
+              : "text-base"
+          }
+        >
           Add Job
         </NavLink>
       </li>
       <li>
         <NavLink
           to="/myPostedJobs"
-          className="nav-link"
-          activeClassName="active"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#31795A] bg-none md:text-lg font-EbGaramond font-medium"
+              : "text-base"
+          }
         >
           My Posted Jobs
         </NavLink>
       </li>
       <li>
-        <NavLink to="/myBidJobs" className="nav-link" activeClassName="active">
+        <NavLink
+          to="/myBidJobs"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#31795A] bg-none md:text-lg font-EbGaramond font-medium"
+              : "text-base"
+          }
+        >
           My Bids
         </NavLink>
       </li>
       <li>
-        <NavLink to="/bidRequest" className="nav-link" activeClassName="active">
+        <NavLink
+          to="/bidRequest"
+          className={({ isActive }) =>
+            isActive
+              ? "text-[#31795A] bg-none md:text-lg font-EbGaramond font-medium"
+              : "text-base"
+          }
+        >
           Bid Request
         </NavLink>
       </li>
@@ -72,7 +105,7 @@ const ResponsiveNavbar = () => {
   );
   return (
     <>
-      <div className="navbar bg-base-100 max-w-[1800px] mx-auto  my-10 p-4 shadow-md rounded-lg">
+      <div className="navbar bg-base-100 max-w-[1800px] mx-auto  mt-10 mb-5 p-4 shadow-md rounded-lg">
         {" "}
         <div className="navbar-start">
           {" "}
