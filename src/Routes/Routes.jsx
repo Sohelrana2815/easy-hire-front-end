@@ -44,7 +44,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/allUsersJobs/${params.id}`),
+          fetch(`https://easy-hire-backend.vercel.app/allUsersJobs/${params.id}`),
       },
       {
         path: "myPostedJobs",

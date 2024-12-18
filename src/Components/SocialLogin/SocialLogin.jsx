@@ -10,8 +10,8 @@ const SocialLogin = () => {
 
   const handleGoogleLogin = () => {
     googleSignIn()
-      .then((result) => {
-        console.log(result.user);
+      .then(() => {
+        // console.log(result.user);
         //Navigate after login
         navigate(location?.state ? location.state : "/");
       })
@@ -23,8 +23,8 @@ const SocialLogin = () => {
 
   const handleGitHubLogin = () => {
     gitHubLogin()
-      .then((result) => {
-        console.log(result.user);
+      .then(() => {
+        // console.log(result.user);
         //Navigate after login
         navigate(location?.state ? location.state : "/");
       })
