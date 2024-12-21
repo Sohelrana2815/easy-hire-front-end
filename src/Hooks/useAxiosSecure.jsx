@@ -20,10 +20,13 @@ const useAxiosSecure = () => {
       (error) => {
         console.log("error in the interceptors: ", error.response);
         if (error.response.status === 401 || error.response.status === 403) {
-          logout().then(() => {
-            navigate("/signIn");
-          });
+          setTimeout(() => {
+            logout().then(() => {
+              navigate("/signIn");
+            });
+          }, 3000); // 2 seconds delay }
         }
+        return Promise.reject(error);
       }
     );
   }, [logout, navigate]);

@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
-import logo from "../../assets/WebsiteLogo/Logo-design-illustration-on-transparent-background-PNG.png";
+import logo from "../../assets/WebsiteLogo/website logo.png";
 import { BiMenu } from "react-icons/bi";
 import { useState } from "react";
 import AnimatedComponent from "../../Components/SocialLogin/AnimatedComponent/AnimatedComponent";
