@@ -114,7 +114,7 @@ const ResponsiveNavbar = () => {
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-sm md:btn-md bg-[#31795A] text-white lg:hidden hover:bg-[#265a43] transition duration-300"
+                className="btn btn-sm mr-3 bg-[#31795A] text-white lg:hidden hover:bg-[#265a43] transition duration-300"
                 onClick={toggleDropdown}
               >
                 {" "}
@@ -133,8 +133,12 @@ const ResponsiveNavbar = () => {
               {" "}
               <p className="text-xl cursor-pointer flex items-center md:gap-x-2">
                 {" "}
-                <img src={logo} className="w-10" alt="Easy Hire Logo" /> Easy
-                Hire{" "}
+                <img
+                  src={logo}
+                  className="w-8 md:w-10 mr-2"
+                  alt="Easy Hire Logo"
+                />{" "}
+                Easy Hire{" "}
               </p>{" "}
             </Link>{" "}
           </div>{" "}
