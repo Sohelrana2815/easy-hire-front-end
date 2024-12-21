@@ -138,6 +138,7 @@ const BidRequest = () => {
                             )}
                           </td>
                           <td className="border px-4 py-2 text-center">
+                            {/* Show this 2 btn if status is pending */}
                             {bidRequest.status === "pending" && (
                               <div className="flex items-center gap-2">
                                 <button
@@ -160,6 +161,7 @@ const BidRequest = () => {
                                 </button>
                               </div>
                             )}
+                            {/*  */}
                             {(bidRequest.status === "accept" ||
                               bidRequest.status === "complete") && (
                               <div>
@@ -167,7 +169,9 @@ const BidRequest = () => {
                                   percent={percent}
                                   filledBackground="linear-gradient(to right, #4caf50, #8bc34a)"
                                 />
-                                <h3>{label}</h3>
+                                <h3 className="text-sm text-success">
+                                  {label}
+                                </h3>
                               </div>
                             )}
                             {bidRequest.status === "reject" && null}
