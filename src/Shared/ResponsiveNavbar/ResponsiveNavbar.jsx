@@ -131,7 +131,7 @@ const ResponsiveNavbar = () => {
             </div>{" "}
             <Link to="/">
               {" "}
-              <p className="text-xl cursor-pointer flex items-center md:gap-x-2">
+              <p className="text-xl xl:text-3xl xl:font-medium xl:font-EbGaramond cursor-pointer flex items-center md:gap-x-2">
                 {" "}
                 <img
                   src={logo}
