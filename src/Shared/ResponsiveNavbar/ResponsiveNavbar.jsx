@@ -152,45 +152,35 @@ const ResponsiveNavbar = () => {
           </div>{" "}
           <div className="navbar-end gap-x-3">
             {" "}
-            {/* {user ? (
-              <div className="avatar" title={user?.displayName}>
-                {" "}
-                <div className="ring-[#31795A] ring-offset-base-100 w-8 rounded-full ring ring-offset-2">
-                  {" "}
-                  <img
-                    src={user.photoURL ? user.photoURL : null}
-                    alt={user?.displayName}
-                  />{" "}
-                </div>{" "}
-              </div>
-            ) : null}{" "} */}
-            <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
-                <div className="w-10 ring-primary ring-offset-base-100 rounded-full ring ring-offset-2">
-                  <img
-                    alt="Tailwind CSS Navbar component"
-                    title={user?.displayName}
-                    src={user?.photoURL}
-                  />
+            {user && (
+              <div className="dropdown dropdown-end">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar"
+                >
+                  <div className="w-10 ring-primary ring-offset-base-100 rounded-full ring ring-offset-2">
+                    <img
+                      alt="Tailwind CSS Navbar component"
+                      title={user?.displayName}
+                      src={user?.photoURL}
+                    />
+                  </div>
                 </div>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                >
+                  <Link to={"/editProfile"}>
+                    <li>
+                      <a className="justify-between">
+                        Edit Profile <FaPen />
+                      </a>
+                    </li>
+                  </Link>
+                </ul>
               </div>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-              >
-                <Link to={"/editProfile"}>
-                  <li>
-                    <a className="justify-between">
-                      Edit Profile <FaPen />
-                    </a>
-                  </li>
-                </Link>
-              </ul>
-            </div>
+            )}
             {user ? (
               <button
                 onClick={handleLogout}
@@ -203,17 +193,15 @@ const ResponsiveNavbar = () => {
               <>
                 {" "}
                 <Link to="/signUp">
-                  {" "}
-                  <button className="btn btn-outline rounded-md">
+                  <button className="px-6 py-2 border-2 border-green-600 text-green-600 font-semibold rounded-md transition duration-200 hover:bg-green-600 hover:text-white">
                     Sign Up
-                  </button>{" "}
-                </Link>{" "}
+                  </button>
+                </Link>
                 <Link to="/signIn">
-                  {" "}
-                  <button className="btn btn-success rounded-md">
-                    Sign in
-                  </button>{" "}
-                </Link>{" "}
+                  <button className="px-6 py-2 bg-green-600 text-white font-semibold rounded-md transition duration-200 hover:bg-green-700">
+                    Sign In
+                  </button>
+                </Link>
               </>
             )}{" "}
           </div>{" "}
