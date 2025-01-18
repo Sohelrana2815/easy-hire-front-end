@@ -10,6 +10,7 @@ import MyPostedJobs from "../Pages/MyPostedJobs/MyPostedJobs";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import MyBids from "../Pages/MyBids/MyBids";
 import BidRequest from "../Pages/BidRequest/BidRequest";
+import EditProfile from "../Pages/EditProfile/EditProfile";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -37,6 +38,11 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "editProfile",
+        element: <EditProfile />,
+      },
+
+      {
         path: "jobDetails/:id",
         element: (
           <PrivateRoute>
@@ -44,7 +50,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://easy-hire-backend.vercel.app/allUsersJobs/${params.id}`),
+          fetch(
+            `https://easy-hire-backend.vercel.app/allUsersJobs/${params.id}`
+          ),
       },
       {
         path: "myPostedJobs",
