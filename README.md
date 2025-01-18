@@ -14,4 +14,10 @@ Easy Hire is a full-stack job marketplace designed to connect job seekers with e
 
 ---
 
+## Developer Information
+- ** Frontend Repository: ** [GitHub Link](https://github.com/Sohelrana2815/easy-hire-front-end)
+- ** Backend Repository: ** [GitHub Link](https://github.com/Sohelrana2815/easy-hire-backend)
+
 Feel free to explore the platform and provide your feedback!
+
+Thank you for exploring **Easy Hire**!
