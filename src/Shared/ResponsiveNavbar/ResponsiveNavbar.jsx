@@ -193,12 +193,12 @@ const ResponsiveNavbar = () => {
               <>
                 {" "}
                 <Link to="/signUp">
-                  <button className="px-6 py-2 border-2 border-green-600 text-green-600 font-semibold rounded-md transition duration-200 hover:bg-green-600 hover:text-white">
+                  <button className="px-6 py-2 border-2 border-green-600 text-green-600 font-semibold rounded-md transition duration-200 hover:bg-green-600 font-EbGaramond hover:text-white">
                     Sign Up
                   </button>
                 </Link>
                 <Link to="/signIn">
-                  <button className="px-6 py-2 bg-green-600 text-white font-semibold rounded-md transition duration-200 hover:bg-green-700">
+                  <button className="px-6 py-2 font-EbGaramond bg-green-600 text-white font-semibold rounded-md transition duration-200 hover:bg-green-700">
                     Sign In
                   </button>
                 </Link>

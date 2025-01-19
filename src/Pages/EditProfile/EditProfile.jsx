@@ -1,9 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 
 const EditProfile = () => {
   const { user, updateUserProfile } = useAuth(); // Custom hook for get user data
+
+  useEffect(() => {
+    // Set initial values from "user"
+
+    if (user) {
+      setName(user.displayName || "");
+      setPhotoURL(user.photoURL || "");
+    }
+  }, [user]);
 
   const [name, setName] = useState(user?.displayName || "");
   const [photoURL, setPhotoURL] = useState(user?.photoURL || "");
@@ -39,12 +48,12 @@ const EditProfile = () => {
           </h1>
           <div className="flex flex-col items-center mb-6">
             <img
-              src={user?.photoURL || "https://via.placeholder.com/150"}
+              src={photoURL || "https://via.placeholder.com/150"}
               alt="Profile"
               className="w-24 h-24 rounded-full object-cover mb-4 border border-gray-300"
             />
 
-            <p>{user?.displayName || "Your Name"}</p>
+            <p>{name || "Your Name"}</p>
           </div>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
@@ -68,7 +77,9 @@ const EditProfile = () => {
               <label
                 htmlFor="photoURL"
                 className="block text-sm font-medium text-gray-700"
-              ></label>
+              >
+                Photo URL
+              </label>
               <input
                 type="url"
                 id="photoURL"
